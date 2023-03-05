@@ -12,5 +12,5 @@
 
 #Development Process
 
-1 Hello Game
+1 Hello Game  
   1.1 Tạo cửa sổ, load ảnh Hello game
