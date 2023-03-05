@@ -12,5 +12,5 @@
 
 #Development Process
 
-1.0 Hello Game, tạo cửa sổ game, load hình ảnh "Hello Game".  
-1.1 Tạo BaseObject, đối tượng hình ảnh cơ sở để các đối tượng khác có thể kế thừa.
+1 Hello Game
+  1.1 Tạo cửa sổ, load ảnh Hello game
