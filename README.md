@@ -10,7 +10,8 @@
   - Chọn đúng hết tăng level (tăng số lượng nhân vật)
 
 
-#Development Process
+## Development Process
 
-1 Hello Game  
-  1.1 Tạo cửa sổ, load ảnh Hello game
+1.0 Hello Game  
+- 1.1 Tạo cửa sổ, load ảnh Hello game 
+- 1.2 Sử dụng SDL_image để load ảnh
