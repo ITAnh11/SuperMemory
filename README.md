@@ -16,3 +16,4 @@
 - 1.1 Tạo cửa sổ, load ảnh Hello game 
 - 1.2 Sử dụng SDL_image để load ảnh
 - 1.3 Header Common để include các thư viện, lưu các biến toàn cục, các biến const,... (dùng chung)
+- 1.4 Texture Loading and Rendering

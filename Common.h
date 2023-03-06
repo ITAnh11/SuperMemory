@@ -17,10 +17,10 @@ const int SCREEN_HEIGHT = 480;
 //The window we'll be rendering to
 static SDL_Window* gWindow = NULL;
 	
-//The surface contained by the window
-static SDL_Surface* gScreenSurface = NULL;
+//The window renderer
+static SDL_Renderer* gRenderer = NULL;
 
-//Current displayed PNG image
-static SDL_Surface* gPNGSurface = NULL;
+//Current displayed texture
+static SDL_Texture* gTexture = NULL;
 
 #endif // !COMMON_H_
