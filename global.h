@@ -4,8 +4,9 @@
 #include "Common.h"
 
 #include "BaseObject.h"
+#include "ScreenObject.h"
 
-extern BaseObject gTexture;
+extern ScreenObject g_Screen;
 
 #endif // !GLOBAL_VARIABLE_H_
 

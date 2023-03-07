@@ -70,7 +70,7 @@ bool loadMedia()
 	bool success = true;
 
 	//Load PNG texture
-	if (!gTexture.loadFromFile("Image/texture.png"))
+	if (!g_Screen.loadFromFile("Image/screen.png"))
 	{
 		printf("Failed to load texture image!\n");
 		success = false;
@@ -82,7 +82,7 @@ bool loadMedia()
 void close()
 {
 	//Free loaded image
-	gTexture.free();
+	g_Screen.free();
 
 	//Destroy window	
 	SDL_DestroyRenderer(g_Renderer);
@@ -134,7 +134,7 @@ int main(int argc, char* args[])
 				SDL_RenderClear(g_Renderer);
 
 				//Render texture to screen
-				gTexture.render(0, 0);
+				g_Screen.render(0, 0);
 
 				//Update screen
 				SDL_RenderPresent(g_Renderer);

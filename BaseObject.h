@@ -36,13 +36,13 @@ public:
 
 protected:
     //The actual hardware texture
-    SDL_Texture* mTexture;
+    SDL_Texture* m_Texture;
 
     //Image dimensions
-    int mWidth;
-    int mHeight;
+    int m_Width;
+    int m_Height;
 
-    std::string mfileName;
+    std::string m_fileName;
 };
 
 #endif // !BASE_OBJECT_H_

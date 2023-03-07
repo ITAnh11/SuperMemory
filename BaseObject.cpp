@@ -3,9 +3,9 @@
 BaseObject::BaseObject()
 {
 	//Initialize
-	mTexture = NULL;
-	mWidth = 0;
-	mHeight = 0;
+	m_Texture = NULL;
+	m_Width = 0;
+	m_Height = 0;
 }
 
 BaseObject::~BaseObject()
@@ -42,8 +42,8 @@ bool BaseObject::loadFromFile(std::string path)
 		else
 		{
 			//Get image dimensions
-			mWidth = loadedSurface->w;
-			mHeight = loadedSurface->h;
+			m_Width = loadedSurface->w;
+			m_Height = loadedSurface->h;
 		}
 
 		//Get rid of old loaded surface
@@ -51,45 +51,45 @@ bool BaseObject::loadFromFile(std::string path)
 	}
 
 	//Return success
-	mTexture = newTexture;
-	mfileName = path;
-	return mTexture != NULL;
+	m_Texture = newTexture;
+	m_fileName = path;
+	return m_Texture != NULL;
 }
 
 void BaseObject::setColor(Uint8 red, Uint8 green, Uint8 blue)
 {
 	//Modulate texture
-	SDL_SetTextureColorMod(mTexture, red, green, blue);
+	SDL_SetTextureColorMod(m_Texture, red, green, blue);
 }
 
 void BaseObject::setBlendMode(SDL_BlendMode blending)
 {
 	//Set blending function
-	SDL_SetTextureBlendMode(mTexture, blending);
+	SDL_SetTextureBlendMode(m_Texture, blending);
 }
 
 void BaseObject::setAlpha(Uint8 alpha)
 {
 	//Modulate texture alpha
-	SDL_SetTextureAlphaMod(mTexture, alpha);
+	SDL_SetTextureAlphaMod(m_Texture, alpha);
 }
 
 void BaseObject::free()
 {
 	//Free texture if it exists
-	if (mTexture != NULL)
+	if (m_Texture != NULL)
 	{
-		SDL_DestroyTexture(mTexture);
-		mTexture = NULL;
-		mWidth = 0;
-		mHeight = 0;
+		SDL_DestroyTexture(m_Texture);
+		m_Texture = NULL;
+		m_Width = 0;
+		m_Height = 0;
 	}
 }
 
 void BaseObject::render(int x, int y, SDL_Rect* clip, double angle, SDL_Point* center, SDL_RendererFlip flip)
 {
 	//Set rendering space and render to screen
-	SDL_Rect renderQuad = { x, y, mWidth, mHeight };
+	SDL_Rect renderQuad = { x, y, m_Width, m_Height };
 
 	//Set clip rendering dimensions
 	if (clip != NULL)
@@ -99,15 +99,15 @@ void BaseObject::render(int x, int y, SDL_Rect* clip, double angle, SDL_Point* c
 	}
 
 	//Render to screen
-	SDL_RenderCopyEx(g_Renderer, mTexture, clip, &renderQuad, angle, center, flip);
+	SDL_RenderCopyEx(g_Renderer, m_Texture, clip, &renderQuad, angle, center, flip);
 }
 
 int BaseObject::getWidth()
 {
-	return mWidth;
+	return m_Width;
 }
 
 int BaseObject::getHeight()
 {
-	return mHeight;
+	return m_Height;
 }

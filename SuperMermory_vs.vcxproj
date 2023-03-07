@@ -148,6 +148,7 @@
     <ClCompile Include="Common.cpp" />
     <ClCompile Include="global.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="ScreenObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitattributes" />
@@ -158,6 +159,7 @@
     <ClInclude Include="BaseObject.h" />
     <ClInclude Include="Common.h" />
     <ClInclude Include="global.h" />
+    <ClInclude Include="ScreenObject.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

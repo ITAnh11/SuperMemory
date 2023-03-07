@@ -1,3 +1,3 @@
 #include "global.h"
 
-BaseObject gTexture;
+ScreenObject g_Screen;
