@@ -17,3 +17,4 @@
 - 1.2 Sử dụng SDL_image để load ảnh
 - 1.3 Header Common để include các thư viện, lưu các biến toàn cục, các biến const,... (dùng chung)
 - 1.4 Texture Loading and Rendering
+- 1.5 Tạo global.h để lưu các biến global. Tạo BaseObject(đối tượng hình ảnh cơ sở) để các Object khác kế thừa

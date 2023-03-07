@@ -1,4 +1,5 @@
 #include "Common.h"
+#include "global.h"
 
 //Starts up SDL and creates window
 bool init();
@@ -8,12 +9,6 @@ bool loadMedia();
 
 //Frees media and shuts down SDL
 void close();
-
-//Loads individual image as texture
-SDL_Texture* loadTexture(std::string path);
-
-//Current displayed texture
-SDL_Texture* gTexture = NULL;
 
 bool init()
 {
@@ -75,8 +70,7 @@ bool loadMedia()
 	bool success = true;
 
 	//Load PNG texture
-	gTexture = loadTexture("Image/texture.png");
-	if (gTexture == NULL)
+	if (!gTexture.loadFromFile("Image/texture.png"))
 	{
 		printf("Failed to load texture image!\n");
 		success = false;
@@ -88,8 +82,7 @@ bool loadMedia()
 void close()
 {
 	//Free loaded image
-	SDL_DestroyTexture(gTexture);
-	gTexture = NULL;
+	gTexture.free();
 
 	//Destroy window	
 	SDL_DestroyRenderer(g_Renderer);
@@ -100,33 +93,6 @@ void close()
 	//Quit SDL subsystems
 	IMG_Quit();
 	SDL_Quit();
-}
-
-SDL_Texture* loadTexture(std::string path)
-{
-	//The final texture
-	SDL_Texture* newTexture = NULL;
-
-	//Load image at specified path
-	SDL_Surface* loadedSurface = IMG_Load(path.c_str());
-	if (loadedSurface == NULL)
-	{
-		printf("Unable to load image %s! SDL_image Error: %s\n", path.c_str(), IMG_GetError());
-	}
-	else
-	{
-		//Create texture from surface pixels
-		newTexture = SDL_CreateTextureFromSurface(g_Renderer, loadedSurface);
-		if (newTexture == NULL)
-		{
-			printf("Unable to create texture from %s! SDL Error: %s\n", path.c_str(), SDL_GetError());
-		}
-
-		//Get rid of old loaded surface
-		SDL_FreeSurface(loadedSurface);
-	}
-
-	return newTexture;
 }
 
 int main(int argc, char* args[])
@@ -168,7 +134,7 @@ int main(int argc, char* args[])
 				SDL_RenderClear(g_Renderer);
 
 				//Render texture to screen
-				SDL_RenderCopy(g_Renderer, gTexture, NULL, NULL);
+				gTexture.render(0, 0);
 
 				//Update screen
 				SDL_RenderPresent(g_Renderer);
