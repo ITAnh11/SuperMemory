@@ -6,6 +6,7 @@ BaseObject::BaseObject()
 	m_Texture = NULL;
 	m_Width = 0;
 	m_Height = 0;
+	m_fileName = "";
 }
 
 BaseObject::~BaseObject()

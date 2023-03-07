@@ -19,5 +19,6 @@
 	- 1.4 Texture Loading and Rendering
 	- 1.5 Tạo global.h để lưu các biến global. Tạo BaseObject(đối tượng hình ảnh cơ sở) để các Object khác kế thừa
 	- 1.6 ScreenObject màn hình game khi play, render g_Screen
-* 2.0 CharacterObject
-	- 2.1 Render clips, thêm flip để lật ảnh theo hướng di chuyển
+	- 1.7 CharacterObject
+		- 1.7.1 Render clips, thêm flip để lật ảnh theo hướng di chuyển
+		- 1.7.2 Thêm di chuyển, ngẫu nhiên hướng di chuyển trái phải

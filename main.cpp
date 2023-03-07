@@ -12,6 +12,9 @@ void close();
 
 bool init()
 {
+	//Initialize random number generators
+	srand(time(NULL));
+
 	//Initialization flag
 	bool success = true;
 
@@ -84,6 +87,8 @@ bool loadMedia()
 	else
 	{
 		g_Character.setClip(WALKING_ANIMATION_FRAMES);
+		g_Character.randomLeftRight();
+		std::cout << g_Character.getLeftRight();
 	}
 
 	return success;
@@ -93,6 +98,7 @@ void close()
 {
 	//Free loaded image
 	g_Screen.free();
+	g_Character.free();
 
 	//Destroy window	
 	SDL_DestroyRenderer(g_Renderer);
@@ -145,7 +151,8 @@ int main(int argc, char* args[])
 
 				//Render texture to screen
 				g_Screen.render(0, 0);
-				g_Character.renderClips(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
+				g_Character.handleMove();
+				g_Character.renderClips(g_Character.getRect().x, g_Character.getRect().y);
 
 				//Update screen
 				SDL_RenderPresent(g_Renderer);

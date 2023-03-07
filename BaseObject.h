@@ -34,6 +34,8 @@ public:
     int getWidth();
     int getHeight();
 
+    std::string getFilename() const { return m_fileName; }
+
 protected:
     //The actual hardware texture
     SDL_Texture* m_Texture;
