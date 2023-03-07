@@ -16,6 +16,8 @@
 //Screen
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
+const int FPS = 60;
+const int frameDelay = 1000 / FPS;
 
 //Color
 const int RENDER_DRAW_COLOR_R = 255;

@@ -133,9 +133,14 @@ int main(int argc, char* args[])
 			//Event handler
 			SDL_Event e;
 
+			Uint32 frameStart;
+			int frameTime;
+
 			//While application is running
 			while (!quit)
 			{
+				frameStart = SDL_GetTicks();
+
 				//Handle events on queue
 				while (SDL_PollEvent(&e) != 0)
 				{
@@ -150,12 +155,18 @@ int main(int argc, char* args[])
 				SDL_RenderClear(g_Renderer);
 
 				//Render texture to screen
-				g_Screen.render(0, 0);
 				g_Character.handleMove();
 				g_Character.renderClips(g_Character.getRect().x, g_Character.getRect().y);
+				g_Screen.render(0, 0);
 
 				//Update screen
 				SDL_RenderPresent(g_Renderer);
+
+				frameTime = SDL_GetTicks() - frameStart;
+				if (frameDelay > frameTime)
+				{
+					SDL_Delay(frameDelay - frameTime);
+				}
 			}
 		}
 	}

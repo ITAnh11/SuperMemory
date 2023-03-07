@@ -22,3 +22,4 @@
 	- 1.7 CharacterObject
 		- 1.7.1 Render clips, thêm flip để lật ảnh theo hướng di chuyển
 		- 1.7.2 Thêm di chuyển, ngẫu nhiên hướng di chuyển trái phải
+	-1.8 set Fps
