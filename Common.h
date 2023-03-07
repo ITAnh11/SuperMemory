@@ -30,6 +30,9 @@ const int COLOR_KEY_B = 255;
 //Speed
 const int SCREEN_SPEED = 4;
 
+//Number Frame
+const int WALKING_ANIMATION_FRAMES = 4;
+
 //The window we'll be rendering to
 extern SDL_Window* g_Window;
 

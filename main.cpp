@@ -76,6 +76,16 @@ bool loadMedia()
 		success = false;
 	}
 
+	if (!g_Character.loadFromFile("Image/2.png"))
+	{
+		printf("Failed to load texture image!\n");
+		success = false;
+	}
+	else
+	{
+		g_Character.setClip(WALKING_ANIMATION_FRAMES);
+	}
+
 	return success;
 }
 
@@ -135,6 +145,7 @@ int main(int argc, char* args[])
 
 				//Render texture to screen
 				g_Screen.render(0, 0);
+				g_Character.renderClips(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
 
 				//Update screen
 				SDL_RenderPresent(g_Renderer);
