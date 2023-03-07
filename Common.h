@@ -16,7 +16,7 @@
 //Screen
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
-const int FPS = 60;
+const int FPS = 16;
 const int frameDelay = 1000 / FPS;
 
 //Color
@@ -31,7 +31,7 @@ const int COLOR_KEY_B = 255;
 
 //Speed
 const int SCREEN_SPEED = 4;
-const int CHARACTER_SPEED = 1;
+const int CHARACTER_SPEED = 8;
 
 //Number Frame
 const int WALKING_ANIMATION_FRAMES = 4;

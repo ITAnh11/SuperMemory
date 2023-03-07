@@ -32,9 +32,9 @@ void CharacterObject::setClip(const int frame)
 
 void CharacterObject::renderClips(const int x, const int y)
 {
-	SDL_Rect* currentClip = &m_SpriteClips[m_frame / (WALKING_ANIMATION_FRAMES * 2)];
+	SDL_Rect* currentClip = &m_SpriteClips[m_frame];
 	++m_frame;
-	if (m_frame >= WALKING_ANIMATION_FRAMES * WALKING_ANIMATION_FRAMES * 2) m_frame = 0;
+	if (m_frame >= WALKING_ANIMATION_FRAMES) m_frame = 0;
 	if (m_LR == LEFT) render(x, y, currentClip, 0, 0, SDL_FLIP_HORIZONTAL);
 	else render(x, y, currentClip);
 }
