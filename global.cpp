@@ -2,4 +2,6 @@
 
 ScreenObject g_Screen;
 
-CharacterObject g_Character;
+std::vector <CharacterObject> g_listCharacter1, g_listCharacter2;
+
+int LEVEL = 3;

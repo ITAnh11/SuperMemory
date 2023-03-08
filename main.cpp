@@ -1,5 +1,6 @@
 #include "Common.h"
 #include "global.h"
+#include "Game.h"
 
 //Starts up SDL and creates window
 bool init();
@@ -72,23 +73,17 @@ bool loadMedia()
 	//Loading success flag
 	bool success = true;
 
-	//Load PNG texture
+	//Load Screen PNG texture
 	if (!g_Screen.loadFromFile("Image/screen.png"))
 	{
-		printf("Failed to load texture image!\n");
+		printf("Failed to load texture image Screen!\n");
 		success = false;
 	}
 
-	if (!g_Character.loadFromFile("Image/2.png"))
+	if (!GAME::createListCharacter())
 	{
-		printf("Failed to load texture image!\n");
+		printf("Failed to create list character!\n");
 		success = false;
-	}
-	else
-	{
-		g_Character.setClip(WALKING_ANIMATION_FRAMES);
-		g_Character.randomLeftRight();
-		std::cout << g_Character.getLeftRight();
 	}
 
 	return success;
@@ -98,7 +93,10 @@ void close()
 {
 	//Free loaded image
 	g_Screen.free();
-	g_Character.free();
+	for (CharacterObject p_Character : g_listCharacter1)
+	{
+		p_Character.free();
+	}
 
 	//Destroy window	
 	SDL_DestroyRenderer(g_Renderer);
@@ -155,8 +153,6 @@ int main(int argc, char* args[])
 				SDL_RenderClear(g_Renderer);
 
 				//Render texture to screen
-				g_Character.handleMove();
-				g_Character.renderClips(g_Character.getRect().x, g_Character.getRect().y);
 				g_Screen.render(0, 0);
 
 				//Update screen

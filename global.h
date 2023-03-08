@@ -10,7 +10,11 @@
 //Sceen gameplay
 extern ScreenObject g_Screen;
 
-extern CharacterObject g_Character;
+//List character
+extern std::vector <CharacterObject> g_listCharacter1;
+
+//Level
+extern int LEVEL;
 
 #endif // !GLOBAL_VARIABLE_H_
 

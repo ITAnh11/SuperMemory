@@ -23,3 +23,6 @@
 		- 1.7.1 Render clips, thêm flip để lật ảnh theo hướng di chuyển
 		- 1.7.2 Thêm di chuyển, ngẫu nhiên hướng di chuyển trái phải
 	- 1.8 set Fps
+* 2.0 Main Game (Game.h)
+	- 2.1 Screen 1
+		-2.1.1 List character, size of list = LEVEL, ngẫu nhiên hình ảnh

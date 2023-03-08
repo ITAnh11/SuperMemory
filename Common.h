@@ -36,6 +36,9 @@ const int CHARACTER_SPEED = 8;
 //Number Frame
 const int WALKING_ANIMATION_FRAMES = 4;
 
+//Number character
+const int NUMBER_CHARACTER = 3;
+
 //Direction character
 enum LeftRight
 {
