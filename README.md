@@ -27,3 +27,6 @@
 	- 2.1 Screen 1
 		- 2.1.1 List character, size of list = LEVEL, ngẫu nhiên hình ảnh
 		- 2.1.2 Xuất hiện lần lượt các character 
+		- https://user-images.githubusercontent.com/111406683/223731608-8e747fd3-90bd-4c94-b464-b6b3d3a23959.mp4
+	- 2.2 Move Screen sau khi kết thúc screen1
+		- 2.2.1 add func handleMove cho ScreenObject,add func MoveScreen trong Game.h

@@ -15,7 +15,6 @@ bool GAME::createCharacter(CharacterObject* p_Character)
 	{
 		p_Character->setClip(WALKING_ANIMATION_FRAMES);
 		p_Character->randomLeftRight();
-		std::cout << p_Character->getLeftRight() << "\n";
 	}
 
 	return success;
@@ -87,7 +86,7 @@ bool GAME::Screen1()
 			++currentCharacter;
 		}
 
-		g_Screen.render(0, 0);
+		g_Screen->render(0, 0);
 
 		//Update screen
 		SDL_RenderPresent(g_Renderer);
@@ -99,5 +98,48 @@ bool GAME::Screen1()
 		}
 	}
 
+	return quit;
+}
+
+bool GAME::moveScreen()
+{
+	//Main loop flag
+	bool quit = false;
+
+	//Event handler
+	SDL_Event event;
+
+	Uint32 frameStart;
+	int frameTime;
+
+	while (g_Screen->getIsmove() && !quit)
+	{
+		frameStart = SDL_GetTicks();
+
+		//Handle events on queue
+		while (SDL_PollEvent(&event) != 0)
+		{
+			//User requests status
+			if (event.type == SDL_QUIT)
+			{
+				quit = true;
+			}
+		}
+
+		//Clear screen
+		SDL_RenderClear(g_Renderer);
+
+		g_Screen->handleMove();
+		g_Screen->render(g_Screen->getRect().x, g_Screen->getRect().y);
+
+		//Update screen
+		SDL_RenderPresent(g_Renderer);
+
+		frameTime = SDL_GetTicks() - frameStart;
+		if (frameDelay > frameTime)
+		{
+			SDL_Delay(frameDelay - frameTime);
+		}
+	}
 	return quit;
 }

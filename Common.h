@@ -30,8 +30,8 @@ const int COLOR_KEY_G = 255;
 const int COLOR_KEY_B = 255;
 
 //Speed
-const int SCREEN_SPEED = 4;
-const int CHARACTER_SPEED = 8;
+const int SCREEN_SPEED = 16;
+const int CHARACTER_SPEED = 16;
 
 //Number Frame
 const int WALKING_ANIMATION_FRAMES = 4;

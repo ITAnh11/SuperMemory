@@ -74,7 +74,8 @@ bool loadMedia()
 	bool success = true;
 
 	//Load Screen PNG texture
-	if (!g_Screen.loadFromFile("Image/screen.png"))
+	g_Screen = new ScreenObject();
+	if (!g_Screen->loadFromFile("Image/screen.png"))
 	{
 		printf("Failed to load texture image Screen!\n");
 		success = false;
@@ -92,7 +93,12 @@ bool loadMedia()
 void close()
 {
 	//Free loaded image
-	g_Screen.free();
+	g_Screen->free();
+	if (g_Screen != NULL)
+	{
+		delete(g_Screen);
+	}
+	
 	g_listCharacter1.clear();
 
 	//Destroy window	
@@ -126,6 +132,7 @@ int main(int argc, char* args[])
 			while (true)
 			{
 				if (GAME::Screen1()) break;
+				if (GAME::moveScreen()) break;
 			}
 		}
 	}

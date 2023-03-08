@@ -12,6 +12,9 @@ namespace GAME
 
 	// Screen 1
 	bool Screen1();
+
+	//move screen
+	bool moveScreen();
 }
 
 #endif // !GAME_H_

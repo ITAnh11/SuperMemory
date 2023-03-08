@@ -8,7 +8,7 @@
 #include "CharacterObject.h"
 
 //Sceen gameplay
-extern ScreenObject g_Screen;
+extern ScreenObject* g_Screen;
 
 //List character
 extern std::vector <CharacterObject*> g_listCharacter1;
