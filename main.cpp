@@ -93,10 +93,7 @@ void close()
 {
 	//Free loaded image
 	g_Screen.free();
-	for (CharacterObject p_Character : g_listCharacter1)
-	{
-		p_Character.free();
-	}
+	g_listCharacter1.clear();
 
 	//Destroy window	
 	SDL_DestroyRenderer(g_Renderer);
@@ -125,44 +122,10 @@ int main(int argc, char* args[])
 		}
 		else
 		{
-			//Main loop flag
-			bool quit = false;
-
-			//Event handler
-			SDL_Event e;
-
-			Uint32 frameStart;
-			int frameTime;
-
-			//While application is running
-			while (!quit)
+			// Run game
+			while (true)
 			{
-				frameStart = SDL_GetTicks();
-
-				//Handle events on queue
-				while (SDL_PollEvent(&e) != 0)
-				{
-					//User requests quit
-					if (e.type == SDL_QUIT)
-					{
-						quit = true;
-					}
-				}
-
-				//Clear screen
-				SDL_RenderClear(g_Renderer);
-
-				//Render texture to screen
-				g_Screen.render(0, 0);
-
-				//Update screen
-				SDL_RenderPresent(g_Renderer);
-
-				frameTime = SDL_GetTicks() - frameStart;
-				if (frameDelay > frameTime)
-				{
-					SDL_Delay(frameDelay - frameTime);
-				}
+				if (GAME::Screen1()) break;
 			}
 		}
 	}

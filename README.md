@@ -25,4 +25,5 @@
 	- 1.8 set Fps
 * 2.0 Main Game (Game.h)
 	- 2.1 Screen 1
-		-2.1.1 List character, size of list = LEVEL, ngẫu nhiên hình ảnh
+		- 2.1.1 List character, size of list = LEVEL, ngẫu nhiên hình ảnh
+		- 2.1.2 Xuất hiện lần lượt các character 

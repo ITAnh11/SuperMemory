@@ -7,11 +7,11 @@
 namespace GAME
 {
 	// Initialize character
-	bool createCharacter(CharacterObject& p_Character);
+	bool createCharacter(CharacterObject* p_Character);
 	bool createListCharacter();
 
 	// Screen 1
-
+	bool Screen1();
 }
 
 #endif // !GAME_H_
