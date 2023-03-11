@@ -124,8 +124,6 @@ bool GAME::Screen1()
 		//Render texture to screen
 		g_listCharacter1.at(currentCharacter)->handleMove();
 		g_listCharacter1.at(currentCharacter)->renderClips(g_listCharacter1.at(currentCharacter)->getRect().x, g_listCharacter1.at(currentCharacter)->getRect().y);
-		//g_listCharacter1.at(currentCharacter)->render(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
-		//std::cout << g_listCharacter1[currentCharacter].getRect().x << " " << g_listCharacter1[currentCharacter].getRect().y << "\n";
 
 		if (!g_listCharacter1.at(currentCharacter)->getIsMove())
 		{
@@ -187,5 +185,72 @@ bool GAME::moveScreen()
 			SDL_Delay(frameDelay - frameTime);
 		}
 	}
+	return quit;
+}
+
+void GAME::resetListCharacter2()
+{
+	for (auto c : g_listCharacter2)
+	{
+		c->reset();
+	}
+}
+
+bool GAME::Screen2()
+{
+	//reset list 2
+	resetListCharacter2();
+
+	//Main loop flag
+	bool quit = false;
+
+	//Event handler
+	SDL_Event e;
+
+	Uint32 frameStart;
+	int frameTime;
+
+	int currentCharacter = 0;
+	int sizelist2 = g_listCharacter2.size();
+
+	//While application is running
+	while (currentCharacter < sizelist2 && !quit)
+	{
+		frameStart = SDL_GetTicks();
+
+		//Handle events on queue
+		while (SDL_PollEvent(&e) != 0)
+		{
+			//User requests quit
+			if (e.type == SDL_QUIT)
+			{
+				quit = true;
+			}
+		}
+
+		//Clear screen
+		SDL_RenderClear(g_Renderer);
+
+		//Render texture to screen
+		g_listCharacter2.at(currentCharacter)->handleMove();
+		g_listCharacter2.at(currentCharacter)->renderClips(g_listCharacter2.at(currentCharacter)->getRect().x, g_listCharacter2.at(currentCharacter)->getRect().y);
+
+		if (!g_listCharacter2.at(currentCharacter)->getIsMove())
+		{
+			++currentCharacter;
+		}
+
+		g_Screen->render(g_Screen->getRect().x, g_Screen->getRect().y);
+
+		//Update screen
+		SDL_RenderPresent(g_Renderer);
+
+		frameTime = SDL_GetTicks() - frameStart;
+		if (frameDelay > frameTime)
+		{
+			SDL_Delay(frameDelay - frameTime);
+		}
+	}
+
 	return quit;
 }

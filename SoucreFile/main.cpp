@@ -143,6 +143,7 @@ int main(int argc, char* args[])
 			{
 				if (GAME::Screen1()) break;
 				if (GAME::moveScreen()) break;
+				if (GAME::Screen2()) break;
 			}
 		}
 	}

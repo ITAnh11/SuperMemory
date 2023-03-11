@@ -18,6 +18,10 @@ namespace GAME
 
 	//move screen
 	bool moveScreen();
+
+	// creen 2
+	void resetListCharacter2();
+	bool Screen2();
 }
 
 #endif // !GAME_H_
