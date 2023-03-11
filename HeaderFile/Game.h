@@ -1,8 +1,8 @@
 #ifndef GAME_H_
 #define GAME_H_
 
-#include "Common.h"
-#include "global.h"
+#include "../HeaderFile/Common.h"
+#include "../HeaderFile/global.h"
 
 namespace GAME
 {

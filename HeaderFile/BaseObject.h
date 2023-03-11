@@ -1,7 +1,7 @@
 #ifndef BASE_OBJECT_H_
 #define	BASE_OBJECT_H_
 
-#include "Common.h"
+#include "../HeaderFile/Common.h"
 
 class BaseObject
 {

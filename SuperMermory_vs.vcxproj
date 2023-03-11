@@ -144,13 +144,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Soucre file\BaseObject.cpp" />
-    <ClCompile Include="Soucre file\CharacterObject.cpp" />
-    <ClCompile Include="Soucre file\Common.cpp" />
-    <ClCompile Include="Soucre file\Game.cpp" />
-    <ClCompile Include="Soucre file\global.cpp" />
-    <ClCompile Include="Soucre file\main.cpp" />
-    <ClCompile Include="Soucre file\ScreenObject.cpp" />
+    <ClCompile Include="SoucreFile\BaseObject.cpp" />
+    <ClCompile Include="SoucreFile\CharacterObject.cpp" />
+    <ClCompile Include="SoucreFile\Common.cpp" />
+    <ClCompile Include="SoucreFile\Game.cpp" />
+    <ClCompile Include="SoucreFile\global.cpp" />
+    <ClCompile Include="SoucreFile\main.cpp" />
+    <ClCompile Include="SoucreFile\ScreenObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitattributes" />
@@ -158,12 +158,12 @@
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Header file\BaseObject.h" />
-    <ClInclude Include="Header file\CharacterObject.h" />
-    <ClInclude Include="Header file\Common.h" />
-    <ClInclude Include="Header file\Game.h" />
-    <ClInclude Include="Header file\global.h" />
-    <ClInclude Include="Header file\ScreenObject.h" />
+    <ClInclude Include="HeaderFile\BaseObject.h" />
+    <ClInclude Include="HeaderFile\CharacterObject.h" />
+    <ClInclude Include="HeaderFile\Common.h" />
+    <ClInclude Include="HeaderFile\Game.h" />
+    <ClInclude Include="HeaderFile\global.h" />
+    <ClInclude Include="HeaderFile\ScreenObject.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,6 +1,6 @@
-#include "Common.h"
-#include "global.h"
-#include "Game.h"
+#include "../HeaderFile/Common.h"
+#include "../HeaderFile/global.h"
+#include "../HeaderFile/Game.h"
 
 //Starts up SDL and creates window
 bool init();

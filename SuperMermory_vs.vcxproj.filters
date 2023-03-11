@@ -15,25 +15,25 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Soucre file\main.cpp">
+    <ClCompile Include="SoucreFile\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Soucre file\BaseObject.cpp">
+    <ClCompile Include="SoucreFile\BaseObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Soucre file\global.cpp">
+    <ClCompile Include="SoucreFile\global.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Soucre file\Common.cpp">
+    <ClCompile Include="SoucreFile\Common.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Soucre file\ScreenObject.cpp">
+    <ClCompile Include="SoucreFile\ScreenObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Soucre file\CharacterObject.cpp">
+    <ClCompile Include="SoucreFile\CharacterObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Soucre file\Game.cpp">
+    <ClCompile Include="SoucreFile\Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -43,22 +43,22 @@
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Header file\Common.h">
+    <ClInclude Include="HeaderFile\Common.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Header file\BaseObject.h">
+    <ClInclude Include="HeaderFile\BaseObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Header file\global.h">
+    <ClInclude Include="HeaderFile\global.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Header file\ScreenObject.h">
+    <ClInclude Include="HeaderFile\ScreenObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Header file\CharacterObject.h">
+    <ClInclude Include="HeaderFile\CharacterObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Header file\Game.h">
+    <ClInclude Include="HeaderFile\Game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

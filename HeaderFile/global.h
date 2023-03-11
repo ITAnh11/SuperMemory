@@ -1,9 +1,9 @@
 #ifndef GLOBAL_VARIABLE_H_
 #define	GLOBAL_VARIABLE_H_
 
-#include "Common.h"
+#include "../HeaderFile/Common.h"
 
-#include "BaseObject.h"
+#include "../HeaderFile/BaseObject.h"
 #include "ScreenObject.h"
 #include "CharacterObject.h"
 

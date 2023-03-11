@@ -1,8 +1,8 @@
 #ifndef CHARACTER_OBJECT_H_
 #define CHARACTER_OBJECT_H_
 
-#include "Common.h"
-#include "BaseObject.h"
+#include "../HeaderFile/Common.h"
+#include "../HeaderFile/BaseObject.h"
 
 class CharacterObject : public BaseObject
 {

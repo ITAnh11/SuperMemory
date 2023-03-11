@@ -1,4 +1,4 @@
-#include "ScreenObject.h"
+#include "../HeaderFile/ScreenObject.h"
 
 ScreenObject::ScreenObject()
 {

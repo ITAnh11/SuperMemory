@@ -1,8 +1,8 @@
 #ifndef SCREEN_OBJECT_H_
 #define SCREEN_OBJECT_H_
 
-#include "Common.h"
-#include "BaseObject.h"
+#include "../HeaderFile/Common.h"
+#include "../HeaderFile/BaseObject.h"
 
 class ScreenObject : public BaseObject
 {

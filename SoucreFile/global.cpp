@@ -1,4 +1,4 @@
-#include "global.h"
+#include "../HeaderFile/global.h"
 
 ScreenObject* g_Screen;
 
