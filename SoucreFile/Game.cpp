@@ -1,4 +1,4 @@
-#include "Game.h"
+#include "../HeaderFile/Game.h"
 
 bool GAME::createCharacter(CharacterObject* p_Character)
 {
@@ -17,10 +17,11 @@ bool GAME::createCharacter(CharacterObject* p_Character)
 		p_Character->randomLeftRight();
 	}
 
+
 	return success;
 }
 
-bool GAME::createListCharacter()
+bool GAME::createListCharacter1()
 {
 	g_listCharacter1.clear();
 
@@ -41,6 +42,51 @@ bool GAME::createListCharacter()
 	}
 
 	return true;
+}
+
+bool GAME::createListCharacter2()
+{
+	g_listCharacter2.clear();
+	g_listCharacter2 = g_listCharacter1;
+
+	CharacterObject* p_Charracter;
+
+	int numCharAdd = rand() % LEVEL + LEVEL;
+
+	for (int i = 0; i < numCharAdd; i++)
+	{
+		p_Charracter = new CharacterObject();
+		if (!createCharacter(p_Charracter))
+		{
+			printf("Failed to create Character!\n");
+			return false;
+		}
+		else
+		{
+			int posInsert = rand() % g_listCharacter2.size();
+			g_listCharacter2.insert(g_listCharacter2.begin() + posInsert, p_Charracter);
+		}
+	}
+
+	return true;
+}
+
+bool GAME::checkTheSame(const CharacterObject* p_Character1, const CharacterObject* p_Character2)
+{
+	if (p_Character1->getFilename() != p_Character2->getFilename()) return false;
+	if (p_Character1->getLeftRight() != p_Character2->getLeftRight()) return false;
+	return true;
+}
+
+void GAME::posCharofList1InList2()
+{
+	int j = g_listCharacter2.size() - 1;
+	for (int i = g_listCharacter1.size() - 1; i >= 0; --i)
+	{
+		while (!checkTheSame(g_listCharacter1.at(i), g_listCharacter2.at(j))) --j;
+		posChar1inlist2.insert(posChar1inlist2.begin(), j);
+		--j;
+	}
 }
 
 bool GAME::Screen1()

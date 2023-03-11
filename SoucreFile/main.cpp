@@ -81,10 +81,20 @@ bool loadMedia()
 		success = false;
 	}
 
-	if (!GAME::createListCharacter())
+	if (!GAME::createListCharacter1())
 	{
 		printf("Failed to create list character!\n");
 		success = false;
+	}
+
+	if (!GAME::createListCharacter2())
+	{
+		printf("Failed to create list character!\n");
+		success = false;
+	}
+	else
+	{
+		GAME::posCharofList1InList2();
 	}
 
 	return success;

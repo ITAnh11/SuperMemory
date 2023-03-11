@@ -8,7 +8,10 @@ namespace GAME
 {
 	// Initialize character
 	bool createCharacter(CharacterObject* p_Character);
-	bool createListCharacter();
+	bool createListCharacter1();
+	bool createListCharacter2();
+	bool checkTheSame(const CharacterObject* p_Character1, const CharacterObject* p_Character2);
+	void posCharofList1InList2();
 
 	// Screen 1
 	bool Screen1();

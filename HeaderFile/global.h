@@ -12,6 +12,8 @@ extern ScreenObject* g_Screen;
 
 //List character
 extern std::vector <CharacterObject*> g_listCharacter1;
+extern std::vector <CharacterObject*> g_listCharacter2;
+extern std::vector <int> posChar1inlist2;
 
 //Level
 extern int LEVEL;
