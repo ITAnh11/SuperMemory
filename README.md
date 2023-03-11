@@ -39,4 +39,5 @@
 	
 	- 2.3 Screen 2
 		- 2.3.1 Initalize list character2, check same between 2 character, list pos character list1 in list2
+		- 2.3.2 Reset listcharacter2, xuất hiện lần lượt listCharacter2
 
