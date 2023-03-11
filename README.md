@@ -25,7 +25,7 @@
 	- 1.8 set Fps
 * 2.0 Main Game (Game.h)
 	- 2.1 Screen 1
-		- 2.1.1 List character, size of list = LEVEL, ngẫu nhiên hình ảnh
+		- 2.1.1 List character1, size of list = LEVEL, ngẫu nhiên hình ảnh
 		- 2.1.2 Xuất hiện lần lượt các character 
 		
 		https://user-images.githubusercontent.com/111406683/223747894-b5970f09-16a6-421a-be92-f5a9b5848502.mp4
@@ -36,4 +36,7 @@
 		- 2.2.1 add func handleMove cho ScreenObject,add func MoveScreen trong Game.h
 		
 		https://user-images.githubusercontent.com/111406683/223747936-d3fecda3-9896-43d5-a13a-6c5ce32988fa.mp4
+	
+	- 2.3 Screen 2
+		- 2.3.1 Initalize list character2, check same between 2 character, list pos character list1 in list2
 
