@@ -76,9 +76,15 @@ void CharacterObject::randomLeftRight()
 	m_Rect.y = r;
 }
 
+void CharacterObject::handleInputAction(SDL_Event event)
+{
+
+}
+
 void CharacterObject::reset()
 {
 	m_IsMove = true;
+	m_IsChecked = false;
 	if (m_LR == RIGHT)
 	{
 		m_Rect.x = -(m_Width / WALKING_ANIMATION_FRAMES);

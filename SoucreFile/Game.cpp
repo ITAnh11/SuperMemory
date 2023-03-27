@@ -196,6 +196,31 @@ void GAME::resetListCharacter2()
 	}
 }
 
+Status_Player_Sellect GAME::playerSellect(const SDL_Event event, CharacterObject* p_CharCheck, CharacterObject* p_CharDes, int& numCorrect)
+{
+	if (p_CharCheck->getIsChecked()) return IS_CHECKED;
+	if (event.type == SDL_KEYUP)
+	{
+		if (event.key.keysym.sym == SDLK_SPACE)
+		{
+			std::cout << "player sellect\n";
+			p_CharCheck->isChecked();
+			if (checkTheSame(p_CharCheck, p_CharDes))
+			{
+				++numCorrect;
+				std::cout << "Correct\n";
+				return CORRECT;
+			}
+			else
+			{
+				std::cout << "Incorrect\n";
+				return INCORRECT;
+			}
+		}
+	}
+	return NONE_SELLECT;
+}
+
 bool GAME::Screen2()
 {
 	//reset list 2
@@ -210,11 +235,14 @@ bool GAME::Screen2()
 	Uint32 frameStart;
 	int frameTime;
 
-	int currentCharacter = 0;
+	int currentCharacter1 = 0;
+	int currentCharacter2 = 0;
+	int numCorrect = 0;
 	int sizelist2 = g_listCharacter2.size();
+	int sizelist1 = g_listCharacter1.size();
 
 	//While application is running
-	while (currentCharacter < sizelist2 && !quit)
+	while (currentCharacter2 < sizelist2 && currentCharacter1 < sizelist1 && !quit)
 	{
 		frameStart = SDL_GetTicks();
 
@@ -226,18 +254,27 @@ bool GAME::Screen2()
 			{
 				quit = true;
 			}
+
+			Status_Player_Sellect ret = playerSellect(e, g_listCharacter2.at(currentCharacter2), g_listCharacter1.at(currentCharacter1), numCorrect);
+			if (ret == CORRECT)
+			{
+				++currentCharacter1;
+				std::cout << "num correct is: " << numCorrect << "\n";
+			}
 		}
 
 		//Clear screen
 		SDL_RenderClear(g_Renderer);
 
 		//Render texture to screen
-		g_listCharacter2.at(currentCharacter)->handleMove();
-		g_listCharacter2.at(currentCharacter)->renderClips(g_listCharacter2.at(currentCharacter)->getRect().x, g_listCharacter2.at(currentCharacter)->getRect().y);
-
-		if (!g_listCharacter2.at(currentCharacter)->getIsMove())
+		if (g_listCharacter2.at(currentCharacter2)->getIsMove())
 		{
-			++currentCharacter;
+			g_listCharacter2.at(currentCharacter2)->handleMove();
+			g_listCharacter2.at(currentCharacter2)->renderClips(g_listCharacter2.at(currentCharacter2)->getRect().x, g_listCharacter2.at(currentCharacter2)->getRect().y);
+		}
+		else
+		{
+			++currentCharacter2;
 		}
 
 		g_Screen->render(g_Screen->getRect().x, g_Screen->getRect().y);

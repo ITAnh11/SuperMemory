@@ -34,7 +34,7 @@ bool init()
 		}
 
 		//Create window
-		g_Window = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+		g_Window = SDL_CreateWindow("Super Memory", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
 		if (g_Window == NULL)
 		{
 			printf("Window could not be created! SDL Error: %s\n", SDL_GetError());
@@ -131,20 +131,17 @@ int main(int argc, char* args[])
 	}
 	else
 	{
-		//Load media
-		if (!loadMedia())
+		// Run game
+		while (true)
 		{
-			printf("Failed to load media!\n");
-		}
-		else
-		{
-			// Run game
-			while (true)
+			//Load media
+			if (!loadMedia())
 			{
-				if (GAME::Screen1()) break;
-				if (GAME::moveScreen()) break;
-				if (GAME::Screen2()) break;
+				printf("Failed to load media!\n");
 			}
+			if (GAME::Screen1()) break;
+			if (GAME::moveScreen()) break;
+			if (GAME::Screen2()) break;
 		}
 	}
 

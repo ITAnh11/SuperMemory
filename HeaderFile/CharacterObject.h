@@ -19,6 +19,8 @@ public:
 	void randomLeftRight();
 	void isChecked() { m_IsChecked = true; }
 
+	void handleInputAction(SDL_Event event);
+
 	SDL_Rect getRect() const { return m_Rect; }
 	
 

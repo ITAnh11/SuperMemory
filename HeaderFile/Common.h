@@ -16,7 +16,7 @@
 //Screen
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
-const int FPS = 16;
+const int FPS = 20;
 const int frameDelay = 1000 / FPS;
 
 //Color
@@ -44,6 +44,14 @@ enum LeftRight
 {
     LEFT = -1,
     RIGHT = 1,
+};
+
+enum Status_Player_Sellect
+{
+    CORRECT = 1,
+    INCORRECT =-1,
+    NONE_SELLECT = 0,
+    IS_CHECKED = 2,
 };
 
 //The window we'll be rendering to

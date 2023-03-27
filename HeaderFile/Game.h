@@ -21,6 +21,7 @@ namespace GAME
 
 	// creen 2
 	void resetListCharacter2();
+	Status_Player_Sellect playerSellect(const SDL_Event event, CharacterObject* p_CharCheck, CharacterObject* p_CharDes, int& numCorrect);
 	bool Screen2();
 }
 
