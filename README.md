@@ -44,3 +44,7 @@
 		https://user-images.githubusercontent.com/111406683/224470247-c9438a7b-4a3b-4642-97f2-9de8211f54d4.mp4
 
 		- 2.3.3 Thêm sellect của play với character (press Space to sellect), đếm số lần chọn đúng
+
+
+		https://user-images.githubusercontent.com/111406683/228407369-399ad701-0cf6-45bf-a77b-a4ca71c8d291.mp4
+
