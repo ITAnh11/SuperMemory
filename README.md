@@ -46,5 +46,8 @@
 		- 2.3.3 Thêm sellect của play với character (press Space to sellect), đếm số lần chọn đúng
 		https://user-images.githubusercontent.com/111406683/228407369-399ad701-0cf6-45bf-a77b-a4ca71c8d291.mp4
 
-		- 2.3.4 Thêm trạng thái game (game over, win, quit), chọn sai hoặc đúng nhưng không chọn (cơ hội cuối) thì GAME OVER
+		- 2.3.4 Thêm trạng thái game (game over, win, quit), chọn sai hoặc đúng nhưng không chọn (cơ hội cuối) thì GAME OVER, chọn đúng,đủ thì WIN
+
+		https://user-images.githubusercontent.com/111406683/229077239-76dff1e8-9ba4-4b61-9714-077656f01bec.mp4
+
 
