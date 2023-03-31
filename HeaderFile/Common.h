@@ -48,10 +48,18 @@ enum LeftRight
 
 enum Status_Player_Sellect
 {
-    CORRECT = 1,
-    INCORRECT =-1,
-    NONE_SELLECT = 0,
-    IS_CHECKED = 2,
+    CORRECT,
+    INCORRECT,
+    NONE_SELLECT,
+    IS_CHECKED,
+};
+
+enum Status_Game
+{
+    GAME_WIN,
+    GAME_OVER,
+    GAME_QUIT,
+    NONE,
 };
 
 //The window we'll be rendering to

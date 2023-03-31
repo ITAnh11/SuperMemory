@@ -14,15 +14,15 @@ namespace GAME
 	void posCharofList1InList2();
 
 	// Screen 1
-	bool Screen1();
+	Status_Game Screen1();
 
 	//move screen
-	bool moveScreen();
+	Status_Game moveScreen();
 
 	// creen 2
 	void resetListCharacter2();
 	Status_Player_Sellect playerSellect(const SDL_Event event, CharacterObject* p_CharCheck, CharacterObject* p_CharDes, int& numCorrect);
-	bool Screen2();
+	Status_Game Screen2();
 }
 
 #endif // !GAME_H_

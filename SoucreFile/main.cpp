@@ -139,9 +139,9 @@ int main(int argc, char* args[])
 			{
 				printf("Failed to load media!\n");
 			}
-			if (GAME::Screen1()) break;
-			if (GAME::moveScreen()) break;
-			if (GAME::Screen2()) break;
+			if (GAME::Screen1() == GAME_QUIT) break;
+			if (GAME::moveScreen() == GAME_QUIT) break;
+			if (GAME::Screen2() == GAME_QUIT) break;
 		}
 	}
 

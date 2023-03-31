@@ -89,11 +89,8 @@ void GAME::posCharofList1InList2()
 	}
 }
 
-bool GAME::Screen1()
+Status_Game GAME::Screen1()
 {
-	//Main loop flag
-	bool quit = false;
-
 	//Event handler
 	SDL_Event e;
 
@@ -104,7 +101,7 @@ bool GAME::Screen1()
 	int sizelist1 = g_listCharacter1.size();
 
 	//While application is running
-	while (currentCharacter < sizelist1 && !quit)
+	while (currentCharacter < sizelist1)
 	{
 		frameStart = SDL_GetTicks();
 
@@ -114,7 +111,7 @@ bool GAME::Screen1()
 			//User requests quit
 			if (e.type == SDL_QUIT)
 			{
-				quit = true;
+				return GAME_QUIT;
 			}
 		}
 
@@ -142,21 +139,18 @@ bool GAME::Screen1()
 		}
 	}
 
-	return quit;
+	return NONE;
 }
 
-bool GAME::moveScreen()
+Status_Game GAME::moveScreen()
 {
-	//Main loop flag
-	bool quit = false;
-
 	//Event handler
 	SDL_Event event;
 
 	Uint32 frameStart;
 	int frameTime;
 
-	while (g_Screen->getIsmove() && !quit)
+	while (g_Screen->getIsmove())
 	{
 		frameStart = SDL_GetTicks();
 
@@ -166,7 +160,7 @@ bool GAME::moveScreen()
 			//User requests status
 			if (event.type == SDL_QUIT)
 			{
-				quit = true;
+				return GAME_QUIT;
 			}
 		}
 
@@ -185,7 +179,7 @@ bool GAME::moveScreen()
 			SDL_Delay(frameDelay - frameTime);
 		}
 	}
-	return quit;
+	return NONE;
 }
 
 void GAME::resetListCharacter2()
@@ -221,13 +215,10 @@ Status_Player_Sellect GAME::playerSellect(const SDL_Event event, CharacterObject
 	return NONE_SELLECT;
 }
 
-bool GAME::Screen2()
+Status_Game GAME::Screen2()
 {
 	//reset list 2
 	resetListCharacter2();
-
-	//Main loop flag
-	bool quit = false;
 
 	//Event handler
 	SDL_Event e;
@@ -242,7 +233,7 @@ bool GAME::Screen2()
 	int sizelist1 = g_listCharacter1.size();
 
 	//While application is running
-	while (currentCharacter2 < sizelist2 && currentCharacter1 < sizelist1 && !quit)
+	while (currentCharacter2 < sizelist2 && currentCharacter1 < sizelist1)
 	{
 		frameStart = SDL_GetTicks();
 
@@ -252,7 +243,7 @@ bool GAME::Screen2()
 			//User requests quit
 			if (e.type == SDL_QUIT)
 			{
-				quit = true;
+				return GAME_QUIT;
 			}
 
 			Status_Player_Sellect ret = playerSellect(e, g_listCharacter2.at(currentCharacter2), g_listCharacter1.at(currentCharacter1), numCorrect);
@@ -260,7 +251,18 @@ bool GAME::Screen2()
 			{
 				++currentCharacter1;
 				std::cout << "num correct is: " << numCorrect << "\n";
+				if (currentCharacter1 == sizelist1)
+				{
+					std::cout << "WIN\n";
+					return GAME_WIN;
+				}
 			}
+			else 
+				if (ret == INCORRECT)
+				{
+					std::cout << "GAME OVER" << "\n";
+					return GAME_OVER;
+				}
 		}
 
 		//Clear screen
@@ -275,6 +277,11 @@ bool GAME::Screen2()
 		else
 		{
 			++currentCharacter2;
+			if (posChar1inlist2[currentCharacter1] < currentCharacter2)
+			{
+				std::cout << "GAME OVER" << "\n";
+				return GAME_OVER;
+			}
 		}
 
 		g_Screen->render(g_Screen->getRect().x, g_Screen->getRect().y);
@@ -289,5 +296,5 @@ bool GAME::Screen2()
 		}
 	}
 
-	return quit;
+	return NONE;
 }
