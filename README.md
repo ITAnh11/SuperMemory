@@ -50,3 +50,6 @@
 		https://user-images.githubusercontent.com/111406683/229077239-76dff1e8-9ba4-4b61-9714-077656f01bec.mp4
 
 		- 2.3.5 TextObject Hiện lời hướng dẫn, hiện số lượt đã chọn đúng; cải tiến 1 số chỗ
+
+		https://user-images.githubusercontent.com/111406683/229766990-f6195f6c-ee8e-4711-af76-1cb18e8ff346.mp4
+
