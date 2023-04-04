@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -151,6 +151,7 @@
     <ClCompile Include="SoucreFile\global.cpp" />
     <ClCompile Include="SoucreFile\main.cpp" />
     <ClCompile Include="SoucreFile\ScreenObject.cpp" />
+    <ClCompile Include="SoucreFile\TextObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitattributes" />
@@ -164,6 +165,7 @@
     <ClInclude Include="HeaderFile\Game.h" />
     <ClInclude Include="HeaderFile\global.h" />
     <ClInclude Include="HeaderFile\ScreenObject.h" />
+    <ClInclude Include="HeaderFile\TextObject.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

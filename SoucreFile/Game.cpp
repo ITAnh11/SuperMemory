@@ -4,7 +4,7 @@ bool GAME::createCharacter(CharacterObject* p_Character)
 {
 	bool success = true;
 	std::string path = "Image/";
-	path+=char(rand() % NUMBER_CHARACTER + 1 + '0');
+	path+=COMMONFUNC::intTostring(rand() % NUMBER_CHARACTER + 1);
 	path += ".png";
 	if (!p_Character->loadFromFile(path))
 	{
@@ -13,16 +13,26 @@ bool GAME::createCharacter(CharacterObject* p_Character)
 	}
 	else
 	{
-		p_Character->setClip(WALKING_ANIMATION_FRAMES);
+		p_Character->setClip(ANIMATION_FRAMES);
 		p_Character->randomLeftRight();
 	}
-
 
 	return success;
 }
 
 bool GAME::createListCharacter1()
 {
+	//Loading success flag
+	bool success = true;
+
+	//Load Screen PNG texture
+	g_Screen = new ScreenObject();
+	if (!g_Screen->loadFromFile("Image/screen.png"))
+	{
+		printf("Failed to load texture image Screen!\n");
+		success = false;
+	}
+
 	g_listCharacter1.clear();
 
 	CharacterObject* p_Charracter;
@@ -33,7 +43,7 @@ bool GAME::createListCharacter1()
 		if (!createCharacter(p_Charracter))
 		{
 			printf("Failed to create Character!\n");
-			return false;
+			success = false;
 		}
 		else
 		{
@@ -41,7 +51,25 @@ bool GAME::createListCharacter1()
 		}
 	}
 
-	return true;
+	//Open the font
+	g_Font = TTF_OpenFont("Font/Exo_2/static/Exo2-Italic.ttf", 30);
+	if (g_Font == NULL)
+	{
+		printf("Failed to load font! SDL_ttf Error: %s\n", TTF_GetError());
+		success = false;
+	}
+	else
+	{
+		//Render text
+		SDL_Color textColor = { 0, 0, 0 };
+		g_NoticeSc1.loadFromRenderedText("SEE AND REMEMBER!!", textColor);
+
+		g_NumCorrect.loadFromRenderedText("You remembered : 0/" + COMMONFUNC::intTostring(LEVEL), textColor);
+
+		g_IntructSellect.loadFromRenderedText("Press Space to sellect!!", textColor);
+	}
+
+	return success;
 }
 
 bool GAME::createListCharacter2()
@@ -89,6 +117,28 @@ void GAME::posCharofList1InList2()
 	}
 }
 
+bool GAME::createGame()
+{
+	bool success = true;
+	if (!createListCharacter1())
+	{
+		printf("Failed to create list character!\n");
+		success = false;
+	}
+
+	if (!createListCharacter2())
+	{
+		printf("Failed to create list character!\n");
+		success = false;
+	}
+	else
+	{
+		posCharofList1InList2();
+	}
+
+	return success;
+}
+
 Status_Game GAME::Screen1()
 {
 	//Event handler
@@ -128,7 +178,7 @@ Status_Game GAME::Screen1()
 		}
 
 		g_Screen->render(0, 0);
-
+		g_NoticeSc1.render(SCREEN_WIDTH / 2 - g_NoticeSc1.getWidth() / 2, g_NoticeSc1.getHeight() + 30);
 		//Update screen
 		SDL_RenderPresent(g_Renderer);
 
@@ -147,12 +197,8 @@ Status_Game GAME::moveScreen()
 	//Event handler
 	SDL_Event event;
 
-	Uint32 frameStart;
-	int frameTime;
-
 	while (g_Screen->getIsmove())
 	{
-		frameStart = SDL_GetTicks();
 
 		//Handle events on queue
 		while (SDL_PollEvent(&event) != 0)
@@ -170,14 +216,10 @@ Status_Game GAME::moveScreen()
 		g_Screen->handleMove();
 		g_Screen->render(g_Screen->getRect().x, g_Screen->getRect().y);
 
+		SDL_Delay(5);
+
 		//Update screen
 		SDL_RenderPresent(g_Renderer);
-
-		frameTime = SDL_GetTicks() - frameStart;
-		if (frameDelay > frameTime)
-		{
-			SDL_Delay(frameDelay - frameTime);
-		}
 	}
 	return NONE;
 }
@@ -250,7 +292,8 @@ Status_Game GAME::Screen2()
 			if (ret == CORRECT)
 			{
 				++currentCharacter1;
-				std::cout << "num correct is: " << numCorrect << "\n";
+				SDL_Color textColor = { 0, 0, 0 };
+				g_NumCorrect.loadFromRenderedText("You remembered : " + COMMONFUNC::intTostring(numCorrect) + "/" + COMMONFUNC::intTostring(LEVEL), textColor);
 				if (currentCharacter1 == sizelist1)
 				{
 					std::cout << "WIN\n";
@@ -285,6 +328,8 @@ Status_Game GAME::Screen2()
 		}
 
 		g_Screen->render(g_Screen->getRect().x, g_Screen->getRect().y);
+		g_NumCorrect.render(SCREEN_WIDTH / 2 - g_NumCorrect.getWidth() / 2, g_NumCorrect.getHeight() + 30);
+		g_IntructSellect.render(SCREEN_WIDTH / 2 - g_IntructSellect.getWidth() / 2, SCREEN_HEIGHT - g_IntructSellect.getHeight() - 30);
 
 		//Update screen
 		SDL_RenderPresent(g_Renderer);

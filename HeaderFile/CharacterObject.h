@@ -12,6 +12,7 @@ public:
 
 	void setXY(const int x, const int y);
 	void setClip(const int frame);
+	void setScale(const int scale);
 
 	void renderClips(const int x, const int y);
 
@@ -34,10 +35,11 @@ public:
 private:
 	SDL_Rect m_Rect;
 	int m_frame;
-	SDL_Rect m_SpriteClips[WALKING_ANIMATION_FRAMES];
+	SDL_Rect m_SpriteClips[ANIMATION_FRAMES];
 	LeftRight m_LR;
 	bool m_IsMove;
 	bool m_IsChecked;
+	int m_scale;
 };
 
 #endif // !CHARACTER_OBJECT_H_

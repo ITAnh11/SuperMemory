@@ -61,6 +61,13 @@ bool init()
 					printf("SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError());
 					success = false;
 				}
+
+				//Initialize SDL_ttf
+				if (TTF_Init() == -1)
+				{
+					printf("SDL_ttf could not initialize! SDL_ttf Error: %s\n", TTF_GetError());
+					success = false;
+				}
 			}
 		}
 	}
@@ -70,34 +77,7 @@ bool init()
 
 bool loadMedia()
 {
-	//Loading success flag
-	bool success = true;
-
-	//Load Screen PNG texture
-	g_Screen = new ScreenObject();
-	if (!g_Screen->loadFromFile("Image/screen.png"))
-	{
-		printf("Failed to load texture image Screen!\n");
-		success = false;
-	}
-
-	if (!GAME::createListCharacter1())
-	{
-		printf("Failed to create list character!\n");
-		success = false;
-	}
-
-	if (!GAME::createListCharacter2())
-	{
-		printf("Failed to create list character!\n");
-		success = false;
-	}
-	else
-	{
-		GAME::posCharofList1InList2();
-	}
-
-	return success;
+	return true;
 }
 
 void close()
@@ -108,8 +88,17 @@ void close()
 	{
 		delete(g_Screen);
 	}
+
+	//free text
+	g_IntructSellect.free();
 	
+	//free list character
 	g_listCharacter1.clear();
+	g_listCharacter2.clear();
+
+	//Free global font
+	TTF_CloseFont(g_Font);
+	g_Font = NULL;
 
 	//Destroy window	
 	SDL_DestroyRenderer(g_Renderer);
@@ -131,13 +120,18 @@ int main(int argc, char* args[])
 	}
 	else
 	{
+		//Load media
+		if (!loadMedia())
+		{
+			printf("Failed to load media!\n");
+		}
+
 		// Run game
 		while (true)
 		{
-			//Load media
-			if (!loadMedia())
+			if (GAME::createGame() == false)
 			{
-				printf("Failed to load media!\n");
+				printf("Failed to create game!\n");
 			}
 			if (GAME::Screen1() == GAME_QUIT) break;
 			if (GAME::moveScreen() == GAME_QUIT) break;

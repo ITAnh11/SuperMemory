@@ -30,14 +30,14 @@ const int COLOR_KEY_G = 255;
 const int COLOR_KEY_B = 255;
 
 //Speed
-const int SCREEN_SPEED = 16;
+const int SCREEN_SPEED = 2;
 const int CHARACTER_SPEED = 16;
 
 //Number Frame
-const int WALKING_ANIMATION_FRAMES = 4;
+const int ANIMATION_FRAMES = 4;
 
 //Number character
-const int NUMBER_CHARACTER = 3;
+const int NUMBER_CHARACTER = 4;
 
 //Direction character
 enum LeftRight
@@ -67,5 +67,13 @@ extern SDL_Window* g_Window;
 
 //The window renderer
 extern SDL_Renderer* g_Renderer;
+
+//Globally used font
+extern TTF_Font* g_Font;
+
+namespace COMMONFUNC
+{
+    std::string intTostring(int n);
+}
 
 #endif // !COMMON_H_

@@ -13,6 +13,9 @@ namespace GAME
 	bool checkTheSame(const CharacterObject* p_Character1, const CharacterObject* p_Character2);
 	void posCharofList1InList2();
 
+	// Create game
+	bool createGame();
+	
 	// Screen 1
 	Status_Game Screen1();
 

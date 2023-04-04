@@ -7,6 +7,7 @@ CharacterObject::CharacterObject()
 	m_LR = RIGHT;
 	m_IsMove = true;
 	m_IsChecked = false;
+	m_scale = 1;
 }
 
 CharacterObject::~CharacterObject()
@@ -30,11 +31,16 @@ void CharacterObject::setClip(const int frame)
 	}
 }
 
+void CharacterObject::setScale(const int scale)
+{
+	m_scale = scale;
+}
+
 void CharacterObject::renderClips(const int x, const int y)
 {
 	SDL_Rect* currentClip = &m_SpriteClips[m_frame];
 	++m_frame;
-	if (m_frame >= WALKING_ANIMATION_FRAMES) m_frame = 0;
+	if (m_frame >= ANIMATION_FRAMES) m_frame = 0;
 	if (m_LR == LEFT) render(x, y, currentClip, 0, 0, SDL_FLIP_HORIZONTAL);
 	else render(x, y, currentClip);
 }
@@ -69,7 +75,7 @@ void CharacterObject::randomLeftRight()
 	else
 	{
 		m_LR = RIGHT;
-		m_Rect.x = -(m_Width / WALKING_ANIMATION_FRAMES);
+		m_Rect.x = -(m_Width / ANIMATION_FRAMES);
 	}
 	r = rand() % (SCREEN_HEIGHT - m_Height) - 100;
 	r = SCREEN_HEIGHT / 2;
@@ -87,7 +93,7 @@ void CharacterObject::reset()
 	m_IsChecked = false;
 	if (m_LR == RIGHT)
 	{
-		m_Rect.x = -(m_Width / WALKING_ANIMATION_FRAMES);
+		m_Rect.x = -(m_Width / ANIMATION_FRAMES);
 	}
 	else
 	{
