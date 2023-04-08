@@ -150,6 +150,7 @@
     <ClCompile Include="SoucreFile\Game.cpp" />
     <ClCompile Include="SoucreFile\global.cpp" />
     <ClCompile Include="SoucreFile\main.cpp" />
+    <ClCompile Include="SoucreFile\MenuGame.cpp" />
     <ClCompile Include="SoucreFile\ScreenObject.cpp" />
     <ClCompile Include="SoucreFile\TextObject.cpp" />
   </ItemGroup>
@@ -164,8 +165,12 @@
     <ClInclude Include="HeaderFile\Common.h" />
     <ClInclude Include="HeaderFile\Game.h" />
     <ClInclude Include="HeaderFile\global.h" />
+    <ClInclude Include="HeaderFile\MenuGame.h" />
     <ClInclude Include="HeaderFile\ScreenObject.h" />
     <ClInclude Include="HeaderFile\TextObject.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="savegame.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -53,3 +53,9 @@
 
 		https://user-images.githubusercontent.com/111406683/229766990-f6195f6c-ee8e-4711-af76-1cb18e8ff346.mp4
 
+* 3.0 Menu Game
+	- 3.1 TextObject thêm tính năng nhận sự kiện chuột, đổi màu khi chuột trong vùng của text
+	- 3.2 GameOver text GAMEOVER nhấp nháy, Button AGAIN và QUIT
+	- 3.3 GameWin  text WIN nhấp nháy , button Next LEVEL và QUIT
+	- 3.4 StartGame button NEWGAME, QUIT, CONTINUE tiếp tục level cao nhất, SELLECT LEVEL
+	- 3.5 SellectLevel button biểu tượng sang trái, phải để tăng giảm level

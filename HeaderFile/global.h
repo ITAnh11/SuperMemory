@@ -10,17 +10,37 @@
 
 //Sceen gameplay
 extern ScreenObject* g_Screen;
+extern ScreenObject* g_MenuStart;
 
 //List character
 extern std::vector <CharacterObject*> g_listCharacter1;
 extern std::vector <CharacterObject*> g_listCharacter2;
 extern std::vector <int> posChar1inlist2;
 
-// text
-extern TextObject g_NoticeSc1;
 
-extern TextObject g_NumCorrect;
-extern TextObject g_IntructSellect;
+// Text
+	//Text in game
+	extern TextObject g_NoticeSc1;
+
+	extern TextObject g_NumCorrect;
+	extern TextObject g_IntructSellect;
+
+	//Text in Menu
+	extern TextObject g_GameOver;
+	extern TextObject g_PlayAgain;
+	extern TextObject g_Quit;
+
+	extern TextObject g_GameWin;
+	extern TextObject g_NextLevel;
+
+	extern TextObject g_NewGame;
+	extern TextObject g_Continue;
+	extern TextObject g_SellectLevel;
+
+	extern TextObject g_ButtonLeft;
+	extern TextObject g_ButtonRight;
+	extern TextObject g_Sellect;
+	extern TextObject g_LevelSellect;
 
 //Level
 extern int LEVEL;

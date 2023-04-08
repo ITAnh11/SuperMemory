@@ -36,6 +36,12 @@
     <ClCompile Include="SoucreFile\Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SoucreFile\TextObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SoucreFile\MenuGame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitattributes" />
@@ -61,5 +67,14 @@
     <ClInclude Include="HeaderFile\Game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="HeaderFile\TextObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HeaderFile\MenuGame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="savegame.txt" />
   </ItemGroup>
 </Project>

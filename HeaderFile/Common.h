@@ -12,6 +12,9 @@
 #include <vector>
 #include <math.h>
 #include <time.h>
+#include <fstream>
+
+#include "BaseObject.h"
 
 //Screen
 const int SCREEN_WIDTH = 640;
@@ -30,7 +33,7 @@ const int COLOR_KEY_G = 255;
 const int COLOR_KEY_B = 255;
 
 //Speed
-const int SCREEN_SPEED = 2;
+const int SCREEN_SPEED = 3;
 const int CHARACTER_SPEED = 16;
 
 //Number Frame
@@ -38,6 +41,11 @@ const int ANIMATION_FRAMES = 4;
 
 //Number character
 const int NUMBER_CHARACTER = 4;
+
+//Size Text
+const int TEXT_SIZE_BIG = 80;
+const int TEXT_SIZE_MEDIUM = 40;
+const int TEXT_SIZE_SMALL = 20;
 
 //Direction character
 enum LeftRight

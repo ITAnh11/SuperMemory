@@ -25,14 +25,6 @@ bool GAME::createListCharacter1()
 	//Loading success flag
 	bool success = true;
 
-	//Load Screen PNG texture
-	g_Screen = new ScreenObject();
-	if (!g_Screen->loadFromFile("Image/screen.png"))
-	{
-		printf("Failed to load texture image Screen!\n");
-		success = false;
-	}
-
 	g_listCharacter1.clear();
 
 	CharacterObject* p_Charracter;
@@ -49,24 +41,6 @@ bool GAME::createListCharacter1()
 		{
 			g_listCharacter1.push_back(p_Charracter);
 		}
-	}
-
-	//Open the font
-	g_Font = TTF_OpenFont("Font/Exo_2/static/Exo2-Italic.ttf", 30);
-	if (g_Font == NULL)
-	{
-		printf("Failed to load font! SDL_ttf Error: %s\n", TTF_GetError());
-		success = false;
-	}
-	else
-	{
-		//Render text
-		SDL_Color textColor = { 0, 0, 0 };
-		g_NoticeSc1.loadFromRenderedText("SEE AND REMEMBER!!", textColor);
-
-		g_NumCorrect.loadFromRenderedText("You remembered : 0/" + COMMONFUNC::intTostring(LEVEL), textColor);
-
-		g_IntructSellect.loadFromRenderedText("Press Space to sellect!!", textColor);
 	}
 
 	return success;
@@ -120,6 +94,14 @@ void GAME::posCharofList1InList2()
 bool GAME::createGame()
 {
 	bool success = true;
+
+	//Load Screen PNG texture
+	if (!g_Screen->loadFromFile("Image/screen.png"))
+	{
+		printf("Failed to load texture image Screen!\n");
+		success = false;
+	}
+
 	if (!createListCharacter1())
 	{
 		printf("Failed to create list character!\n");
@@ -134,6 +116,24 @@ bool GAME::createGame()
 	else
 	{
 		posCharofList1InList2();
+	}
+
+	//Open the font
+	g_Font = TTF_OpenFont("Font/Exo_2/static/Exo2-Italic.ttf", 30);
+	if (g_Font == NULL)
+	{
+		printf("Failed to load font! SDL_ttf Error: %s\n", TTF_GetError());
+		success = false;
+	}
+	else
+	{
+		//Render text
+		SDL_Color textColor = { 0, 0, 0 };
+		g_NoticeSc1.loadFromRenderedText("SEE AND REMEMBER!!", textColor);
+
+		g_NumCorrect.loadFromRenderedText("You remembered : 0/" + COMMONFUNC::intTostring(LEVEL), textColor);
+
+		g_IntructSellect.loadFromRenderedText("Press Space to sellect!!", textColor);
 	}
 
 	return success;
@@ -196,7 +196,7 @@ Status_Game GAME::moveScreen()
 {
 	//Event handler
 	SDL_Event event;
-
+	g_Screen->reset();
 	while (g_Screen->getIsmove())
 	{
 
@@ -239,17 +239,14 @@ Status_Player_Sellect GAME::playerSellect(const SDL_Event event, CharacterObject
 	{
 		if (event.key.keysym.sym == SDLK_SPACE)
 		{
-			std::cout << "player sellect\n";
 			p_CharCheck->isChecked();
 			if (checkTheSame(p_CharCheck, p_CharDes))
 			{
 				++numCorrect;
-				std::cout << "Correct\n";
 				return CORRECT;
 			}
 			else
 			{
-				std::cout << "Incorrect\n";
 				return INCORRECT;
 			}
 		}
@@ -296,14 +293,12 @@ Status_Game GAME::Screen2()
 				g_NumCorrect.loadFromRenderedText("You remembered : " + COMMONFUNC::intTostring(numCorrect) + "/" + COMMONFUNC::intTostring(LEVEL), textColor);
 				if (currentCharacter1 == sizelist1)
 				{
-					std::cout << "WIN\n";
 					return GAME_WIN;
 				}
 			}
 			else 
 				if (ret == INCORRECT)
 				{
-					std::cout << "GAME OVER" << "\n";
 					return GAME_OVER;
 				}
 		}
@@ -322,7 +317,6 @@ Status_Game GAME::Screen2()
 			++currentCharacter2;
 			if (posChar1inlist2[currentCharacter1] < currentCharacter2)
 			{
-				std::cout << "GAME OVER" << "\n";
 				return GAME_OVER;
 			}
 		}
