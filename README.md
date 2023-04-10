@@ -70,3 +70,6 @@
 
 * 4.0 Sounds
 	Âm thanh khi nhấn vào nút, game Over, game Win, countDown trong moveScreen
+
+	https://user-images.githubusercontent.com/111406683/230900207-a2629763-e3f7-45b3-99d8-1438f7d0bfa1.mp4
+
