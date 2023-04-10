@@ -74,6 +74,8 @@ bool MENU::createText()
 
 MENU::StatusGameOver MENU::GameOVER()
 {
+	Mix_PlayChannel(-1, g_S_GameOver, 0);
+
 	//Event handler
 	SDL_Event e;
 
@@ -108,6 +110,7 @@ MENU::StatusGameOver MENU::GameOVER()
 			else
 				if (ret == TextObject::B_PRESS)
 				{
+					Mix_PlayChannel(-1, g_S_Click, 0);
 					return StatusGameOver::O_PLAY_AGAIN;
 				}
 				else
@@ -126,6 +129,7 @@ MENU::StatusGameOver MENU::GameOVER()
 			else
 				if (ret == TextObject::B_PRESS)
 				{
+					Mix_PlayChannel(-1, g_S_Click, 0);
 					return StatusGameOver::O_QUIT;
 				}
 				else
@@ -166,6 +170,7 @@ MENU::StatusGameOver MENU::GameOVER()
 
 MENU::StatusGameWin MENU::GameWIN()
 {
+	Mix_PlayChannel(-1, g_S_GameWin, 0);
 	//Event handler
 	SDL_Event e;
 
@@ -200,6 +205,7 @@ MENU::StatusGameWin MENU::GameWIN()
 			else
 				if (ret == TextObject::B_PRESS)
 				{
+					Mix_PlayChannel(-1, g_S_Click, 0);
 					return StatusGameWin::W_NEXT_LEVEL;
 				}
 				else
@@ -218,6 +224,7 @@ MENU::StatusGameWin MENU::GameWIN()
 			else
 				if (ret == TextObject::B_PRESS)
 				{
+					Mix_PlayChannel(-1, g_S_Click, 0);
 					return StatusGameWin::W_QUIT;
 				}
 				else
@@ -293,6 +300,7 @@ MENU::StatusGameStart MENU::GameSTART()
 			else
 				if (ret == TextObject::B_PRESS)
 				{
+					Mix_PlayChannel(-1, g_S_Click, 0);
 					return StatusGameStart::S_NEWGAME;
 				}
 				else
@@ -311,6 +319,7 @@ MENU::StatusGameStart MENU::GameSTART()
 			else
 				if (ret == TextObject::B_PRESS)
 				{
+					Mix_PlayChannel(-1, g_S_Click, 0);
 					return StatusGameStart::S_QUIT;
 				}
 				else
@@ -329,6 +338,7 @@ MENU::StatusGameStart MENU::GameSTART()
 			else
 				if (ret == TextObject::B_PRESS)
 				{
+					Mix_PlayChannel(-1, g_S_Click, 0);
 					return StatusGameStart::S_CONTINUE;
 				}
 				else
@@ -347,6 +357,7 @@ MENU::StatusGameStart MENU::GameSTART()
 			else
 				if (ret == TextObject::B_PRESS)
 				{
+					Mix_PlayChannel(-1, g_S_Click, 0);
 					return StatusGameStart::S_SELLECT_LEVEL;
 				}
 				else
@@ -421,6 +432,7 @@ void MENU::SellectLevel()
 			else
 				if (ret == TextObject::B_PRESS)
 				{
+					Mix_PlayChannel(-1, g_S_Click, 0);
 					LEVEL = levelSellect;
 					return;
 				}
@@ -439,6 +451,7 @@ void MENU::SellectLevel()
 			else
 				if (ret == TextObject::B_PRESS)
 				{
+					Mix_PlayChannel(-1, g_S_Click, 0);
 					--levelSellect;
 					g_ButtonLeft.setColor(0, 255, 0);
 					if (levelSellect == 0) levelSellect = 1;
@@ -457,6 +470,7 @@ void MENU::SellectLevel()
 			else
 				if (ret == TextObject::B_PRESS)
 				{
+					Mix_PlayChannel(-1, g_S_Click, 0);
 					++levelSellect;
 					g_ButtonRight.setColor(0, 255, 0);
 				}

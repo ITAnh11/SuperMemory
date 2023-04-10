@@ -21,7 +21,7 @@ bool init()
 	bool success = true;
 
 	//Initialize SDL
-	if (SDL_Init(SDL_INIT_VIDEO) < 0)
+	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0)
 	{
 		printf("SDL could not initialize! SDL Error: %s\n", SDL_GetError());
 		success = false;
@@ -63,6 +63,13 @@ bool init()
 					success = false;
 				}
 
+				//Initialize SDL_mixer
+				if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
+				{
+					printf("SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError());
+					success = false;
+				}
+
 				//Initialize SDL_ttf
 				if (TTF_Init() == -1)
 				{
@@ -84,6 +91,43 @@ bool loadMedia()
 		printf("Failed to create text Menu\n");
 		success = false;
 	}
+
+	//Load sound effects
+	g_S_Click = Mix_LoadWAV("Sounds/Effects/mixkit-arcade-game-jump-coin-216.wav");
+	if (g_S_Click == NULL)
+	{
+		printf("Failed to load sound effect! SDL_mixer Error: %s\n", Mix_GetError());
+		success = false;
+	}
+
+	g_S_GameOver = Mix_LoadWAV("Sounds/Effects/mixkit-falling-game-over-1942.wav");
+	if (g_S_GameOver == NULL)
+	{
+		printf("Failed to load sound effect! SDL_mixer Error: %s\n", Mix_GetError());
+		success = false;
+	}
+
+	g_S_GameWin = Mix_LoadWAV("Sounds/Effects/mixkit-game-level-completed-2059.wav");
+	if (g_S_GameWin == NULL)
+	{
+		printf("Failed to load sound effect! SDL_mixer Error: %s\n", Mix_GetError());
+		success = false;
+	}
+
+	g_S_SellectCorrect = Mix_LoadWAV("Sounds/Effects/mixkit-correct-answer-tone-2870.wav");
+	if (g_S_SellectCorrect == NULL)
+	{
+		printf("Failed to load sound effect! SDL_mixer Error: %s\n", Mix_GetError());
+		success = false;
+	}
+
+	g_S_CountDown = Mix_LoadWAV("Sounds/Effects/mixkit-start-match-countdown-1954.wav");
+	if (g_S_CountDown == NULL)
+	{
+		printf("Failed to load sound effect! SDL_mixer Error: %s\n", Mix_GetError());
+		success = false;
+	}
+
 	return true;
 }
 
@@ -109,7 +153,17 @@ void close()
 	g_ButtonRight.free();
 	g_SellectLevel.free();
 	g_LevelSellect.free();
-	
+
+	//free sound effect
+	Mix_FreeChunk(g_S_Click);
+	Mix_FreeChunk(g_S_GameOver);
+	Mix_FreeChunk(g_S_GameWin);
+	Mix_FreeChunk(g_S_SellectCorrect);
+	g_S_Click = NULL;
+	g_S_GameOver = NULL;
+	g_S_GameWin = NULL;
+	g_S_SellectCorrect = NULL;
+
 	//free list character
 	g_listCharacter1.clear();
 	g_listCharacter2.clear();
@@ -126,6 +180,8 @@ void close()
 
 	//Quit SDL subsystems
 	IMG_Quit();
+	Mix_Quit();
+	TTF_Quit();
 	SDL_Quit();
 }
 

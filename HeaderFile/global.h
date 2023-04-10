@@ -42,6 +42,14 @@ extern std::vector <int> posChar1inlist2;
 	extern TextObject g_Sellect;
 	extern TextObject g_LevelSellect;
 
+//Sounds effect
+	extern Mix_Chunk* g_S_Click;
+	extern Mix_Chunk* g_S_GameWin;
+	extern Mix_Chunk* g_S_GameOver;
+	extern Mix_Chunk* g_S_SellectCorrect;
+	extern Mix_Chunk* g_S_CountDown;
+
+
 //Level
 extern int LEVEL;
 

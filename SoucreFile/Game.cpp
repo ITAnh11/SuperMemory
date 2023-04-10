@@ -199,7 +199,7 @@ Status_Game GAME::moveScreen()
 	g_Screen->reset();
 	while (g_Screen->getIsmove())
 	{
-
+		Mix_PlayChannel(-1, g_S_CountDown, 0);
 		//Handle events on queue
 		while (SDL_PollEvent(&event) != 0)
 		{
@@ -288,6 +288,7 @@ Status_Game GAME::Screen2()
 			Status_Player_Sellect ret = playerSellect(e, g_listCharacter2.at(currentCharacter2), g_listCharacter1.at(currentCharacter1), numCorrect);
 			if (ret == CORRECT)
 			{
+				Mix_PlayChannel(-1, g_S_SellectCorrect, 0);
 				++currentCharacter1;
 				SDL_Color textColor = { 0, 0, 0 };
 				g_NumCorrect.loadFromRenderedText("You remembered : " + COMMONFUNC::intTostring(numCorrect) + "/" + COMMONFUNC::intTostring(LEVEL), textColor);
