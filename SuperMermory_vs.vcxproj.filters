@@ -15,31 +15,31 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="SoucreFile\main.cpp">
+    <ClCompile Include="SourceFile\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SoucreFile\BaseObject.cpp">
+    <ClCompile Include="SourceFile\BaseObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SoucreFile\global.cpp">
+    <ClCompile Include="SourceFile\global.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SoucreFile\Common.cpp">
+    <ClCompile Include="SourceFile\Common.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SoucreFile\ScreenObject.cpp">
+    <ClCompile Include="SourceFile\ScreenObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SoucreFile\CharacterObject.cpp">
+    <ClCompile Include="SourceFile\CharacterObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SoucreFile\Game.cpp">
+    <ClCompile Include="SourceFile\Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SoucreFile\TextObject.cpp">
+    <ClCompile Include="SourceFile\TextObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SoucreFile\MenuGame.cpp">
+    <ClCompile Include="SourceFile\MenuGame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

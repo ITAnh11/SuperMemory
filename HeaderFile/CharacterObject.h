@@ -7,6 +7,13 @@
 class CharacterObject : public BaseObject
 {
 public:
+	//Direction character
+	enum LeftRight
+	{
+		LEFT = -1,
+		RIGHT = 1,
+	};
+
 	CharacterObject();
 	~CharacterObject();
 

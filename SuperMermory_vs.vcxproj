@@ -144,15 +144,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="SoucreFile\BaseObject.cpp" />
-    <ClCompile Include="SoucreFile\CharacterObject.cpp" />
-    <ClCompile Include="SoucreFile\Common.cpp" />
-    <ClCompile Include="SoucreFile\Game.cpp" />
-    <ClCompile Include="SoucreFile\global.cpp" />
-    <ClCompile Include="SoucreFile\main.cpp" />
-    <ClCompile Include="SoucreFile\MenuGame.cpp" />
-    <ClCompile Include="SoucreFile\ScreenObject.cpp" />
-    <ClCompile Include="SoucreFile\TextObject.cpp" />
+    <ClCompile Include="SourceFile\BaseObject.cpp" />
+    <ClCompile Include="SourceFile\CharacterObject.cpp" />
+    <ClCompile Include="SourceFile\Common.cpp" />
+    <ClCompile Include="SourceFile\Game.cpp" />
+    <ClCompile Include="SourceFile\global.cpp" />
+    <ClCompile Include="SourceFile\main.cpp" />
+    <ClCompile Include="SourceFile\MenuGame.cpp" />
+    <ClCompile Include="SourceFile\ScreenObject.cpp" />
+    <ClCompile Include="SourceFile\TextObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitattributes" />

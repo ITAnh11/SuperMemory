@@ -6,6 +6,22 @@
 
 namespace GAME
 {
+	enum Status_Player_Sellect
+	{
+		CORRECT,
+		INCORRECT,
+		NONE_SELLECT,
+		IS_CHECKED,
+	};
+
+	enum Status_Game
+	{
+		GAME_WIN,
+		GAME_OVER,
+		GAME_QUIT,
+		NONE,
+	};
+
 	// Initialize character
 	bool createCharacter(CharacterObject* p_Character);
 	bool createListCharacter1();

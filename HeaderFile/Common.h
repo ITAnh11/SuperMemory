@@ -47,29 +47,6 @@ const int TEXT_SIZE_BIG = 80;
 const int TEXT_SIZE_MEDIUM = 40;
 const int TEXT_SIZE_SMALL = 20;
 
-//Direction character
-enum LeftRight
-{
-    LEFT = -1,
-    RIGHT = 1,
-};
-
-enum Status_Player_Sellect
-{
-    CORRECT,
-    INCORRECT,
-    NONE_SELLECT,
-    IS_CHECKED,
-};
-
-enum Status_Game
-{
-    GAME_WIN,
-    GAME_OVER,
-    GAME_QUIT,
-    NONE,
-};
-
 //The window we'll be rendering to
 extern SDL_Window* g_Window;
 

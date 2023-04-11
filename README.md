@@ -70,3 +70,6 @@
 
 * 4.0 Sounds
 	Âm thanh khi nhấn vào nút, game Over, game Win, countDown trong moveScreen
+
+* 5.0 Cải thiện
+	- 5.1

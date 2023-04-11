@@ -221,24 +221,24 @@ int main(int argc, char* args[])
 				}
 
 			}
-			Status_Game stGame;
+			GAME::Status_Game stGame;
 			if (GAME::createGame() == false)
 			{
 				printf("Failed to create game!\n");
 			}
-			if (GAME::Screen1() == GAME_QUIT) break;
-			if (GAME::moveScreen() == GAME_QUIT) break;
+			if (GAME::Screen1() == GAME::GAME_QUIT) break;
+			if (GAME::moveScreen() == GAME::GAME_QUIT) break;
 
 			stGame = GAME::Screen2();
-			if (stGame == GAME_QUIT) break;
+			if (stGame == GAME::GAME_QUIT) break;
 			else
-				if (stGame == GAME_OVER)
+				if (stGame == GAME::GAME_OVER)
 				{
 					MENU::StatusGameOver stGO = MENU::GameOVER();
 					if (stGO == MENU::StatusGameOver::O_QUIT) break;
 					if (stGO == MENU::StatusGameOver::O_PLAY_AGAIN) continue;
 				}
-				else if (stGame == GAME_WIN)
+				else if (stGame == GAME::GAME_WIN)
 				{
 					MENU::StatusGameWin stGW = MENU::GameWIN();
 					if (stGW == MENU::StatusGameWin::W_QUIT) break;

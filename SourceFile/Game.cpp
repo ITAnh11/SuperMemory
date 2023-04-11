@@ -139,7 +139,7 @@ bool GAME::createGame()
 	return success;
 }
 
-Status_Game GAME::Screen1()
+GAME::Status_Game GAME::Screen1()
 {
 	//Event handler
 	SDL_Event e;
@@ -189,10 +189,10 @@ Status_Game GAME::Screen1()
 		}
 	}
 
-	return NONE;
+	return GAME::NONE;
 }
 
-Status_Game GAME::moveScreen()
+GAME::Status_Game GAME::moveScreen()
 {
 	//Event handler
 	SDL_Event event;
@@ -232,7 +232,7 @@ void GAME::resetListCharacter2()
 	}
 }
 
-Status_Player_Sellect GAME::playerSellect(const SDL_Event event, CharacterObject* p_CharCheck, CharacterObject* p_CharDes, int& numCorrect)
+GAME::Status_Player_Sellect GAME::playerSellect(const SDL_Event event, CharacterObject* p_CharCheck, CharacterObject* p_CharDes, int& numCorrect)
 {
 	if (p_CharCheck->getIsChecked()) return IS_CHECKED;
 	if (event.type == SDL_KEYUP)
@@ -254,7 +254,7 @@ Status_Player_Sellect GAME::playerSellect(const SDL_Event event, CharacterObject
 	return NONE_SELLECT;
 }
 
-Status_Game GAME::Screen2()
+GAME::Status_Game GAME::Screen2()
 {
 	//reset list 2
 	resetListCharacter2();
