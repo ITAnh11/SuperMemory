@@ -75,5 +75,10 @@
 
 * 5.0 Cải thiện
 	- 5.1 Thêm button return menu ở gameover, gamewin, playagain ở screen
-	
+
+https://user-images.githubusercontent.com/111406683/231989560-51b3723a-28aa-427c-9e25-df29a3a2a32e.mp4
+
+https://user-images.githubusercontent.com/111406683/231989568-aaa73275-04d0-4a1b-8146-91f75b1073c5.mp4
+
+https://user-images.githubusercontent.com/111406683/231989570-89242051-64b5-4f72-91a6-90487bb3aeae.mp4
 
