@@ -11,6 +11,7 @@ namespace MENU
 	{
 		O_QUIT,
 		O_PLAY_AGAIN,
+		O_RETURN_MENU,
 		O_NONE,
 	};
 
@@ -18,6 +19,7 @@ namespace MENU
 	{
 		W_QUIT,
 		W_NEXT_LEVEL,
+		W_RETURN_MENU,
 		W_NONE,
 	};
 
@@ -31,8 +33,6 @@ namespace MENU
 	};
 
 	bool createText();
-
-
 
 	StatusGameOver GameOVER();
 

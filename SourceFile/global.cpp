@@ -28,6 +28,9 @@ TextObject g_ButtonRight;
 TextObject g_Sellect;
 TextObject g_LevelSellect;
 
+TextObject g_Return_Menu;
+TextObject g_B_PlayAgain;
+
 Mix_Chunk* g_S_Click = NULL;
 Mix_Chunk* g_S_GameWin = NULL;
 Mix_Chunk* g_S_GameOver = NULL;

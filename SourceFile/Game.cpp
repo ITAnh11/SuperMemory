@@ -1,10 +1,10 @@
 #include "../HeaderFile/Game.h"
 
-bool GAME::createCharacter(CharacterObject* p_Character)
+bool GAME::createCharacter(CharacterObject *p_Character)
 {
 	bool success = true;
 	std::string path = "Image/";
-	path+=COMMONFUNC::intTostring(rand() % NUMBER_CHARACTER + 1);
+	path += COMMONFUNC::intTostring(rand() % NUMBER_CHARACTER + 1);
 	path += ".png";
 	if (!p_Character->loadFromFile(path))
 	{
@@ -22,14 +22,14 @@ bool GAME::createCharacter(CharacterObject* p_Character)
 
 bool GAME::createListCharacter1()
 {
-	//Loading success flag
+	// Loading success flag
 	bool success = true;
 
 	g_listCharacter1.clear();
 
-	CharacterObject* p_Charracter;
+	CharacterObject *p_Charracter;
 
-	for ( int i = 0; i < LEVEL; i++)
+	for (int i = 0; i < LEVEL; i++)
 	{
 		p_Charracter = new CharacterObject();
 		if (!createCharacter(p_Charracter))
@@ -51,7 +51,7 @@ bool GAME::createListCharacter2()
 	g_listCharacter2.clear();
 	g_listCharacter2 = g_listCharacter1;
 
-	CharacterObject* p_Charracter;
+	CharacterObject *p_Charracter;
 
 	int numCharAdd = rand() % LEVEL + LEVEL;
 
@@ -73,10 +73,12 @@ bool GAME::createListCharacter2()
 	return true;
 }
 
-bool GAME::checkTheSame(const CharacterObject* p_Character1, const CharacterObject* p_Character2)
+bool GAME::checkTheSame(const CharacterObject *p_Character1, const CharacterObject *p_Character2)
 {
-	if (p_Character1->getFilename() != p_Character2->getFilename()) return false;
-	if (p_Character1->getLeftRight() != p_Character2->getLeftRight()) return false;
+	if (p_Character1->getFilename() != p_Character2->getFilename())
+		return false;
+	if (p_Character1->getLeftRight() != p_Character2->getLeftRight())
+		return false;
 	return true;
 }
 
@@ -85,7 +87,8 @@ void GAME::posCharofList1InList2()
 	int j = g_listCharacter2.size() - 1;
 	for (int i = g_listCharacter1.size() - 1; i >= 0; --i)
 	{
-		while (!checkTheSame(g_listCharacter1.at(i), g_listCharacter2.at(j))) --j;
+		while (!checkTheSame(g_listCharacter1.at(i), g_listCharacter2.at(j)))
+			--j;
 		posChar1inlist2.insert(posChar1inlist2.begin(), j);
 		--j;
 	}
@@ -95,7 +98,7 @@ bool GAME::createGame()
 {
 	bool success = true;
 
-	//Load Screen PNG texture
+	// Load Screen PNG texture
 	if (!g_Screen->loadFromFile("Image/screen.png"))
 	{
 		printf("Failed to load texture image Screen!\n");
@@ -118,7 +121,7 @@ bool GAME::createGame()
 		posCharofList1InList2();
 	}
 
-	//Open the font
+	// Open the font
 	g_Font = TTF_OpenFont("Font/Exo_2/static/Exo2-Italic.ttf", 30);
 	if (g_Font == NULL)
 	{
@@ -127,8 +130,8 @@ bool GAME::createGame()
 	}
 	else
 	{
-		//Render text
-		SDL_Color textColor = { 0, 0, 0 };
+		// Render text
+		SDL_Color textColor = {0, 0, 0};
 		g_NoticeSc1.loadFromRenderedText("SEE AND REMEMBER!!", textColor);
 
 		g_NumCorrect.loadFromRenderedText("You remembered : 0/" + COMMONFUNC::intTostring(LEVEL), textColor);
@@ -136,12 +139,18 @@ bool GAME::createGame()
 		g_IntructSellect.loadFromRenderedText("Press Space to sellect!!", textColor);
 	}
 
+	if (!g_B_PlayAgain.loadFromFile("Image/again.png"))
+	{
+		success = false;
+		printf("Failed to load png again\n");
+	}
+
 	return success;
 }
 
 GAME::Status_Game GAME::Screen1()
 {
-	//Event handler
+	// Event handler
 	SDL_Event e;
 
 	Uint32 frameStart;
@@ -150,25 +159,33 @@ GAME::Status_Game GAME::Screen1()
 	int currentCharacter = 0;
 	int sizelist1 = g_listCharacter1.size();
 
-	//While application is running
+	// While application is running
 	while (currentCharacter < sizelist1)
 	{
 		frameStart = SDL_GetTicks();
 
-		//Handle events on queue
+		// Handle events on queue
 		while (SDL_PollEvent(&e) != 0)
 		{
-			//User requests quit
+			// User requests quit
 			if (e.type == SDL_QUIT)
 			{
 				return GAME_QUIT;
 			}
+
+			TextObject::Status_Button ret = g_B_PlayAgain.handleInputAction(e);
+
+			if (ret==TextObject::B_PRESS)
+			{
+				Mix_PlayChannel(-1,g_S_Click,0);
+				return GAME_AGAIN;
+			}
 		}
 
-		//Clear screen
+		// Clear screen
 		SDL_RenderClear(g_Renderer);
 
-		//Render texture to screen
+		// Render texture to screen
 		g_listCharacter1.at(currentCharacter)->handleMove();
 		g_listCharacter1.at(currentCharacter)->renderClips(g_listCharacter1.at(currentCharacter)->getRect().x, g_listCharacter1.at(currentCharacter)->getRect().y);
 
@@ -179,7 +196,9 @@ GAME::Status_Game GAME::Screen1()
 
 		g_Screen->render(0, 0);
 		g_NoticeSc1.render(SCREEN_WIDTH / 2 - g_NoticeSc1.getWidth() / 2, g_NoticeSc1.getHeight() + 30);
-		//Update screen
+
+		g_B_PlayAgain.render(0, 0);
+		// Update screen
 		SDL_RenderPresent(g_Renderer);
 
 		frameTime = SDL_GetTicks() - frameStart;
@@ -194,31 +213,40 @@ GAME::Status_Game GAME::Screen1()
 
 GAME::Status_Game GAME::moveScreen()
 {
-	//Event handler
-	SDL_Event event;
+	// Event handler
+	SDL_Event e;
 	g_Screen->reset();
 	while (g_Screen->getIsmove())
 	{
 		Mix_PlayChannel(-1, g_S_CountDown, 0);
-		//Handle events on queue
-		while (SDL_PollEvent(&event) != 0)
+		// Handle events on queue
+		while (SDL_PollEvent(&e) != 0)
 		{
-			//User requests status
-			if (event.type == SDL_QUIT)
+			// User requests status
+			if (e.type == SDL_QUIT)
 			{
 				return GAME_QUIT;
 			}
+
+			TextObject::Status_Button ret = g_B_PlayAgain.handleInputAction(e);
+
+			if (ret==TextObject::B_PRESS)
+			{
+				Mix_PlayChannel(-1,g_S_Click,0);
+				return GAME_AGAIN;
+			}
 		}
 
-		//Clear screen
+		// Clear screen
 		SDL_RenderClear(g_Renderer);
 
 		g_Screen->handleMove();
 		g_Screen->render(g_Screen->getRect().x, g_Screen->getRect().y);
 
+		g_B_PlayAgain.render(0, 0);
 		SDL_Delay(5);
 
-		//Update screen
+		// Update screen
 		SDL_RenderPresent(g_Renderer);
 	}
 	return NONE;
@@ -232,9 +260,10 @@ void GAME::resetListCharacter2()
 	}
 }
 
-GAME::Status_Player_Sellect GAME::playerSellect(const SDL_Event event, CharacterObject* p_CharCheck, CharacterObject* p_CharDes, int& numCorrect)
+GAME::Status_Player_Sellect GAME::playerSellect(const SDL_Event event, CharacterObject *p_CharCheck, CharacterObject *p_CharDes, int &numCorrect)
 {
-	if (p_CharCheck->getIsChecked()) return IS_CHECKED;
+	if (p_CharCheck->getIsChecked())
+		return IS_CHECKED;
 	if (event.type == SDL_KEYUP)
 	{
 		if (event.key.keysym.sym == SDLK_SPACE)
@@ -256,10 +285,10 @@ GAME::Status_Player_Sellect GAME::playerSellect(const SDL_Event event, Character
 
 GAME::Status_Game GAME::Screen2()
 {
-	//reset list 2
+	// reset list 2
 	resetListCharacter2();
 
-	//Event handler
+	// Event handler
 	SDL_Event e;
 
 	Uint32 frameStart;
@@ -271,43 +300,50 @@ GAME::Status_Game GAME::Screen2()
 	int sizelist2 = g_listCharacter2.size();
 	int sizelist1 = g_listCharacter1.size();
 
-	//While application is running
+	// While application is running
 	while (currentCharacter2 < sizelist2 && currentCharacter1 < sizelist1)
 	{
 		frameStart = SDL_GetTicks();
 
-		//Handle events on queue
+		// Handle events on queue
 		while (SDL_PollEvent(&e) != 0)
 		{
-			//User requests quit
+			// User requests quit
 			if (e.type == SDL_QUIT)
 			{
 				return GAME_QUIT;
 			}
 
-			Status_Player_Sellect ret = playerSellect(e, g_listCharacter2.at(currentCharacter2), g_listCharacter1.at(currentCharacter1), numCorrect);
-			if (ret == CORRECT)
+			TextObject::Status_Button ret = g_B_PlayAgain.handleInputAction(e);
+
+			if (ret==TextObject::B_PRESS)
+			{
+				Mix_PlayChannel(-1,g_S_Click,0);
+				return GAME_AGAIN;
+			}
+
+			Status_Player_Sellect r = playerSellect(e, g_listCharacter2.at(currentCharacter2), g_listCharacter1.at(currentCharacter1), numCorrect);
+			if (r == CORRECT)
 			{
 				Mix_PlayChannel(-1, g_S_SellectCorrect, 0);
 				++currentCharacter1;
-				SDL_Color textColor = { 0, 0, 0 };
+				SDL_Color textColor = {0, 0, 0};
 				g_NumCorrect.loadFromRenderedText("You remembered : " + COMMONFUNC::intTostring(numCorrect) + "/" + COMMONFUNC::intTostring(LEVEL), textColor);
 				if (currentCharacter1 == sizelist1)
 				{
 					return GAME_WIN;
 				}
 			}
-			else 
-				if (ret == INCORRECT)
-				{
-					return GAME_OVER;
-				}
+			else if (r == INCORRECT)
+			{
+				return GAME_OVER;
+			}
 		}
 
-		//Clear screen
+		// Clear screen
 		SDL_RenderClear(g_Renderer);
 
-		//Render texture to screen
+		// Render texture to screen
 		if (g_listCharacter2.at(currentCharacter2)->getIsMove())
 		{
 			g_listCharacter2.at(currentCharacter2)->handleMove();
@@ -326,7 +362,8 @@ GAME::Status_Game GAME::Screen2()
 		g_NumCorrect.render(SCREEN_WIDTH / 2 - g_NumCorrect.getWidth() / 2, g_NumCorrect.getHeight() + 30);
 		g_IntructSellect.render(SCREEN_WIDTH / 2 - g_IntructSellect.getWidth() / 2, SCREEN_HEIGHT - g_IntructSellect.getHeight() - 30);
 
-		//Update screen
+		g_B_PlayAgain.render(0, 0);
+		// Update screen
 		SDL_RenderPresent(g_Renderer);
 
 		frameTime = SDL_GetTicks() - frameStart;

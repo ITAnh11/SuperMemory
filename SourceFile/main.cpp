@@ -3,24 +3,24 @@
 #include "../HeaderFile/Game.h"
 #include "../HeaderFile/MenuGame.h"
 
-//Starts up SDL and creates window
+// Starts up SDL and creates window
 bool init();
 
-//Loads media
+// Loads media
 bool loadMedia();
 
-//Frees media and shuts down SDL
+// Frees media and shuts down SDL
 void close();
 
 bool init()
 {
-	//Initialize random number generators
+	// Initialize random number generators
 	srand(time(NULL));
 
-	//Initialization flag
+	// Initialization flag
 	bool success = true;
 
-	//Initialize SDL
+	// Initialize SDL
 	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0)
 	{
 		printf("SDL could not initialize! SDL Error: %s\n", SDL_GetError());
@@ -28,13 +28,13 @@ bool init()
 	}
 	else
 	{
-		//Set texture filtering to linear
+		// Set texture filtering to linear
 		if (!SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1"))
 		{
 			printf("Warning: Linear texture filtering not enabled!");
 		}
 
-		//Create window
+		// Create window
 		g_Window = SDL_CreateWindow("Super Memory", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
 		if (g_Window == NULL)
 		{
@@ -43,7 +43,7 @@ bool init()
 		}
 		else
 		{
-			//Create renderer for window
+			// Create renderer for window
 			g_Renderer = SDL_CreateRenderer(g_Window, -1, SDL_RENDERER_ACCELERATED);
 			if (g_Renderer == NULL)
 			{
@@ -52,10 +52,10 @@ bool init()
 			}
 			else
 			{
-				//Initialize renderer color
+				// Initialize renderer color
 				SDL_SetRenderDrawColor(g_Renderer, 0xFF, 0xFF, 0xFF, 0xFF);
 
-				//Initialize PNG loading
+				// Initialize PNG loading
 				int imgFlags = IMG_INIT_PNG;
 				if (!(IMG_Init(imgFlags) & imgFlags))
 				{
@@ -63,14 +63,14 @@ bool init()
 					success = false;
 				}
 
-				//Initialize SDL_mixer
+				// Initialize SDL_mixer
 				if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
 				{
 					printf("SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError());
 					success = false;
 				}
 
-				//Initialize SDL_ttf
+				// Initialize SDL_ttf
 				if (TTF_Init() == -1)
 				{
 					printf("SDL_ttf could not initialize! SDL_ttf Error: %s\n", TTF_GetError());
@@ -92,7 +92,7 @@ bool loadMedia()
 		success = false;
 	}
 
-	//Load sound effects
+	// Load sound effects
 	g_S_Click = Mix_LoadWAV("Sounds/Effects/mixkit-arcade-game-jump-coin-216.wav");
 	if (g_S_Click == NULL)
 	{
@@ -133,11 +133,11 @@ bool loadMedia()
 
 void close()
 {
-	//Free loaded image
+	// Free loaded image
 	g_Screen->free();
 	g_MenuStart->free();
 
-	//free text
+	// free text
 	g_IntructSellect.free();
 	g_NumCorrect.free();
 	g_NoticeSc1.free();
@@ -154,7 +154,7 @@ void close()
 	g_SellectLevel.free();
 	g_LevelSellect.free();
 
-	//free sound effect
+	// free sound effect
 	Mix_FreeChunk(g_S_Click);
 	Mix_FreeChunk(g_S_GameOver);
 	Mix_FreeChunk(g_S_GameWin);
@@ -164,37 +164,37 @@ void close()
 	g_S_GameWin = NULL;
 	g_S_SellectCorrect = NULL;
 
-	//free list character
+	// free list character
 	g_listCharacter1.clear();
 	g_listCharacter2.clear();
 
-	//Free global font
+	// Free global font
 	TTF_CloseFont(g_Font);
 	g_Font = NULL;
 
-	//Destroy window	
+	// Destroy window
 	SDL_DestroyRenderer(g_Renderer);
 	SDL_DestroyWindow(g_Window);
 	g_Window = NULL;
 	g_Renderer = NULL;
 
-	//Quit SDL subsystems
+	// Quit SDL subsystems
 	IMG_Quit();
 	Mix_Quit();
 	TTF_Quit();
 	SDL_Quit();
 }
 
-int main(int argc, char* args[])
+int main(int argc, char *args[])
 {
-	//Start up SDL and create window
+	// Start up SDL and create window
 	if (!init())
 	{
 		printf("Failed to initialize!\n");
 	}
 	else
 	{
-		//Load media
+		// Load media
 		if (!loadMedia())
 		{
 			printf("Failed to load media!\n");
@@ -209,8 +209,12 @@ int main(int argc, char* args[])
 			{
 				begin = false;
 				MENU::StatusGameStart stGS = MENU::GameSTART();
-				if (stGS == MENU::StatusGameStart::S_NEWGAME) { LEVEL = 1; }
-				else if (stGS == MENU::StatusGameStart::S_QUIT) break;
+				if (stGS == MENU::StatusGameStart::S_NEWGAME)
+				{
+					LEVEL = 1;
+				}
+				else if (stGS == MENU::StatusGameStart::S_QUIT)
+					break;
 				else if (stGS == MENU::StatusGameStart::S_CONTINUE)
 				{
 					MENU::loadSaveGame();
@@ -219,40 +223,64 @@ int main(int argc, char* args[])
 				{
 					MENU::SellectLevel();
 				}
-
 			}
 			GAME::Status_Game stGame;
 			if (GAME::createGame() == false)
 			{
 				printf("Failed to create game!\n");
 			}
-			if (GAME::Screen1() == GAME::GAME_QUIT) break;
-			if (GAME::moveScreen() == GAME::GAME_QUIT) break;
+
+			stGame = GAME::Screen1();
+			if (stGame == GAME::GAME_QUIT)
+				break;
+			else if (stGame == GAME::GAME_AGAIN)
+				continue;
+
+			stGame = GAME::moveScreen();
+			if (stGame == GAME::GAME_QUIT)
+				break;
+			else if (stGame == GAME::GAME_AGAIN)
+				continue;
 
 			stGame = GAME::Screen2();
-			if (stGame == GAME::GAME_QUIT) break;
-			else
-				if (stGame == GAME::GAME_OVER)
+			if (stGame == GAME::GAME_QUIT)
+				break;
+			else if (stGame == GAME::GAME_AGAIN)
+				continue;
+			else if (stGame == GAME::GAME_OVER)
+			{
+				MENU::StatusGameOver stGO = MENU::GameOVER();
+				if (stGO == MENU::StatusGameOver::O_QUIT)
+					break;
+				if (stGO == MENU::StatusGameOver::O_PLAY_AGAIN)
+					continue;
+				if (stGO == MENU::StatusGameOver::O_RETURN_MENU)
 				{
-					MENU::StatusGameOver stGO = MENU::GameOVER();
-					if (stGO == MENU::StatusGameOver::O_QUIT) break;
-					if (stGO == MENU::StatusGameOver::O_PLAY_AGAIN) continue;
+					begin = true;
+					continue;
 				}
-				else if (stGame == GAME::GAME_WIN)
+			}
+			else if (stGame == GAME::GAME_WIN)
+			{
+				MENU::StatusGameWin stGW = MENU::GameWIN();
+				if (stGW == MENU::StatusGameWin::W_QUIT)
+					break;
+				if (stGW == MENU::StatusGameWin::W_NEXT_LEVEL)
 				{
-					MENU::StatusGameWin stGW = MENU::GameWIN();
-					if (stGW == MENU::StatusGameWin::W_QUIT) break;
-					if (stGW == MENU::StatusGameWin::W_NEXT_LEVEL)
-					{
-						LEVEL++;
-						continue;
-					}
+					LEVEL++;
+					continue;
 				}
+				if (stGW == MENU::StatusGameWin::W_RETURN_MENU)
+				{
+					begin = true;
+					continue;
+				}
+			}
 		}
 		MENU::createSaveGame();
 	}
 
-	//Free resources and close SDL
+	// Free resources and close SDL
 	close();
 
 	return 0;

@@ -19,6 +19,7 @@ namespace GAME
 		GAME_WIN,
 		GAME_OVER,
 		GAME_QUIT,
+		GAME_AGAIN,
 		NONE,
 	};
 
