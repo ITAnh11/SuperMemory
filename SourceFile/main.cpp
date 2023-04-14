@@ -110,6 +110,7 @@ bool loadMedia()
 	g_S_GameWin = Mix_LoadWAV("Sounds/Effects/mixkit-game-level-completed-2059.wav");
 	if (g_S_GameWin == NULL)
 	{
+
 		printf("Failed to load sound effect! SDL_mixer Error: %s\n", Mix_GetError());
 		success = false;
 	}
@@ -121,7 +122,7 @@ bool loadMedia()
 		success = false;
 	}
 
-	g_S_CountDown = Mix_LoadWAV("Sounds/Effects/mixkit-start-match-countdown-1954.wav");
+	g_S_CountDown = Mix_LoadMUS("Sounds/Effects/mixkit-start-match-countdown-1954.wav");
 	if (g_S_CountDown == NULL)
 	{
 		printf("Failed to load sound effect! SDL_mixer Error: %s\n", Mix_GetError());
@@ -163,6 +164,9 @@ void close()
 	g_S_GameOver = NULL;
 	g_S_GameWin = NULL;
 	g_S_SellectCorrect = NULL;
+
+	Mix_FreeMusic(g_S_CountDown);
+	g_S_CountDown = NULL;
 
 	// free list character
 	g_listCharacter1.clear();

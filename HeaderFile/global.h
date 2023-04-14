@@ -50,7 +50,7 @@ extern std::vector <int> posChar1inlist2;
 	extern Mix_Chunk* g_S_GameWin;
 	extern Mix_Chunk* g_S_GameOver;
 	extern Mix_Chunk* g_S_SellectCorrect;
-	extern Mix_Chunk* g_S_CountDown;
+	extern Mix_Music* g_S_CountDown;
 
 
 //Level

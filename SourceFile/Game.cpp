@@ -216,15 +216,16 @@ GAME::Status_Game GAME::moveScreen()
 	// Event handler
 	SDL_Event e;
 	g_Screen->reset();
+	Mix_PlayMusic(g_S_CountDown,0);
 	while (g_Screen->getIsmove())
 	{
-		Mix_PlayChannel(-1, g_S_CountDown, 0);
 		// Handle events on queue
 		while (SDL_PollEvent(&e) != 0)
 		{
 			// User requests status
 			if (e.type == SDL_QUIT)
 			{
+				Mix_HaltMusic();
 				return GAME_QUIT;
 			}
 
@@ -233,6 +234,7 @@ GAME::Status_Game GAME::moveScreen()
 			if (ret==TextObject::B_PRESS)
 			{
 				Mix_PlayChannel(-1,g_S_Click,0);
+				Mix_HaltMusic();
 				return GAME_AGAIN;
 			}
 		}

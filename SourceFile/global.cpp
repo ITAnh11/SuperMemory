@@ -35,6 +35,6 @@ Mix_Chunk* g_S_Click = NULL;
 Mix_Chunk* g_S_GameWin = NULL;
 Mix_Chunk* g_S_GameOver = NULL;
 Mix_Chunk* g_S_SellectCorrect = NULL;
-Mix_Chunk* g_S_CountDown = NULL;
+Mix_Music* g_S_CountDown = NULL;
  
 int LEVEL = 2;
