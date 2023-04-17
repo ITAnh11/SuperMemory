@@ -59,6 +59,7 @@ extern TTF_Font* g_Font;
 namespace COMMONFUNC
 {
     std::string intTostring(int n);
+    int stringToint(std::string s);
 }
 
 #endif // !COMMON_H_

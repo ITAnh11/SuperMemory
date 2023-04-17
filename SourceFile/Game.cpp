@@ -1,11 +1,28 @@
 #include "../HeaderFile/Game.h"
 
+bool GAME::loadNameFile()
+{
+	std::ifstream file("Image/Character/filename.txt");
+	if (!file)
+		return false;
+	std::string s;
+	while (file >> s)
+	{
+		if (file)
+		{
+			g_listNameFile.push_back(s);
+		}
+	}
+	return true;
+}
+
 bool GAME::createCharacter(CharacterObject *p_Character)
 {
 	bool success = true;
-	std::string path = "Image/";
-	path += COMMONFUNC::intTostring(rand() % NUMBER_CHARACTER + 1);
-	path += ".png";
+	std::string path = "Image/Character/";
+	int rd = rand() % int(g_listNameFile.size());
+	path += g_listNameFile[rd];
+
 	if (!p_Character->loadFromFile(path))
 	{
 		printf("Failed to load texture image Character!\n");
@@ -13,8 +30,11 @@ bool GAME::createCharacter(CharacterObject *p_Character)
 	}
 	else
 	{
-		p_Character->setClip(ANIMATION_FRAMES);
+		p_Character->setNumFrame(COMMONFUNC::stringToint(p_Character->getNumframeFromNamefile(g_listNameFile[rd])));
+		p_Character->setScale(1);
+		p_Character->setClip();
 		p_Character->randomLeftRight();
+		
 	}
 
 	return success;
@@ -175,9 +195,9 @@ GAME::Status_Game GAME::Screen1()
 
 			TextObject::Status_Button ret = g_B_PlayAgain.handleInputAction(e);
 
-			if (ret==TextObject::B_PRESS)
+			if (ret == TextObject::B_PRESS)
 			{
-				Mix_PlayChannel(-1,g_S_Click,0);
+				Mix_PlayChannel(-1, g_S_Click, 0);
 				return GAME_AGAIN;
 			}
 		}
@@ -216,7 +236,7 @@ GAME::Status_Game GAME::moveScreen()
 	// Event handler
 	SDL_Event e;
 	g_Screen->reset();
-	Mix_PlayMusic(g_S_CountDown,0);
+	Mix_PlayMusic(g_S_CountDown, 0);
 	while (g_Screen->getIsmove())
 	{
 		// Handle events on queue
@@ -231,9 +251,9 @@ GAME::Status_Game GAME::moveScreen()
 
 			TextObject::Status_Button ret = g_B_PlayAgain.handleInputAction(e);
 
-			if (ret==TextObject::B_PRESS)
+			if (ret == TextObject::B_PRESS)
 			{
-				Mix_PlayChannel(-1,g_S_Click,0);
+				Mix_PlayChannel(-1, g_S_Click, 0);
 				Mix_HaltMusic();
 				return GAME_AGAIN;
 			}
@@ -318,9 +338,9 @@ GAME::Status_Game GAME::Screen2()
 
 			TextObject::Status_Button ret = g_B_PlayAgain.handleInputAction(e);
 
-			if (ret==TextObject::B_PRESS)
+			if (ret == TextObject::B_PRESS)
 			{
-				Mix_PlayChannel(-1,g_S_Click,0);
+				Mix_PlayChannel(-1, g_S_Click, 0);
 				return GAME_AGAIN;
 			}
 

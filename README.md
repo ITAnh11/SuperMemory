@@ -82,3 +82,5 @@ https://user-images.githubusercontent.com/111406683/231989568-aaa73275-04d0-4a1b
 
 https://user-images.githubusercontent.com/111406683/231989570-89242051-64b5-4f72-91a6-90487bb3aeae.mp4
 
+	- 5.2 cải tiến create character, thêm file txt lưu tên file ảnh (X_....png) X là số lượng frame của ảnh
+

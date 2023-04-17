@@ -17,6 +17,7 @@ extern std::vector <CharacterObject*> g_listCharacter1;
 extern std::vector <CharacterObject*> g_listCharacter2;
 extern std::vector <int> posChar1inlist2;
 
+extern std::vector <std::string> g_listNameFile;
 
 // Text
 	//Text in game

@@ -24,6 +24,7 @@ namespace GAME
 	};
 
 	// Initialize character
+	bool loadNameFile();
 	bool createCharacter(CharacterObject* p_Character);
 	bool createListCharacter1();
 	bool createListCharacter2();

@@ -129,6 +129,12 @@ bool loadMedia()
 		success = false;
 	}
 
+	if (!GAME::loadNameFile())
+	{
+		printf("Failed to load list name file");
+		success = false;
+	}
+
 	return true;
 }
 
