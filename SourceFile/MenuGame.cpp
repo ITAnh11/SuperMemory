@@ -538,7 +538,7 @@ void MENU::SellectLevel()
 
 		g_Font = TTF_OpenFont("Font/Bebas_Neue/BebasNeue-Regular.ttf", TEXT_SIZE_BIG);
 		SDL_Color textColor = {0, 0, 0};
-		g_LevelSellect.loadFromRenderedText(COMMONFUNC::intTostring(levelSellect), textColor);
+		g_LevelSellect.loadFromRenderedText(std::to_string(levelSellect), textColor);
 		g_LevelSellect.render(SCREEN_WIDTH / 2 - g_LevelSellect.getWidth() / 2, 190);
 
 		// Update screen

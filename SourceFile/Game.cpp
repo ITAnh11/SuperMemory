@@ -30,7 +30,7 @@ bool GAME::createCharacter(CharacterObject *p_Character)
 	}
 	else
 	{
-		p_Character->setNumFrame(COMMONFUNC::stringToint(p_Character->getNumframeFromNamefile(g_listNameFile[rd])));
+		p_Character->setNumFrame(std::stoi(p_Character->getNumframeFromNamefile(g_listNameFile[rd])));
 		p_Character->setScale(1);
 		p_Character->setClip();
 		p_Character->randomLeftRight();
@@ -154,7 +154,7 @@ bool GAME::createGame()
 		SDL_Color textColor = {0, 0, 0};
 		g_NoticeSc1.loadFromRenderedText("SEE AND REMEMBER!!", textColor);
 
-		g_NumCorrect.loadFromRenderedText("You remembered : 0/" + COMMONFUNC::intTostring(LEVEL), textColor);
+		g_NumCorrect.loadFromRenderedText("You remembered : 0/" + std::to_string(LEVEL), textColor);
 
 		g_IntructSellect.loadFromRenderedText("Press Space to sellect!!", textColor);
 	}
@@ -350,7 +350,7 @@ GAME::Status_Game GAME::Screen2()
 				Mix_PlayChannel(-1, g_S_SellectCorrect, 0);
 				++currentCharacter1;
 				SDL_Color textColor = {0, 0, 0};
-				g_NumCorrect.loadFromRenderedText("You remembered : " + COMMONFUNC::intTostring(numCorrect) + "/" + COMMONFUNC::intTostring(LEVEL), textColor);
+				g_NumCorrect.loadFromRenderedText("You remembered : " + std::to_string(numCorrect) + "/" + std::to_string(LEVEL), textColor);
 				if (currentCharacter1 == sizelist1)
 				{
 					return GAME_WIN;
